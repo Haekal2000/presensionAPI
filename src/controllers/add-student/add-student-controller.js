@@ -41,7 +41,7 @@ const postCreateStudent = async (req, res, next) => {
       await studentModel.student.create(validated);
       res.status(200).json(Respond(200, "Insert User Success", null, ""));
     } else {
-      res.status(400).json(Respond(400, "duplicated data!", null, ""));
+      res.status(400).json(Respond(400, "duplicated data", null, ""));
     }
   } catch (err) {
     res.status(500).json(Respond(500, "", null, ""));
