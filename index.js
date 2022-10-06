@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import sequelize from './src/utils/DBconnection';
+import router from './src/routes/routes';
 
 const app = express();
 const port = 3000;
@@ -15,10 +17,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
-});
+app.use(router);
 
 app.listen(port, () => {
   console.log(`app listening on port ${port}!`);
+});
+
+sequelize.authenticate().then(() => {
+  console.log('Connection has been established successfully');
+}).catch((error) => {
+  console.error('Unable to connect to the database: ', error);
 });
