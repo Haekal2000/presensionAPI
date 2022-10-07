@@ -19,29 +19,31 @@ export const checkValidationUser = async (param) => {
 export const tokenization = async (param) => {
   const isValid = await checkValidationUser(param);
   if (isValid) {
-    let { username } = param;
+    const { username } = param;
 
-    const randomize = (char) => {
-      return Math.random().toString(36).substring(2);
-    };
-
-    const arrChar = username.split("");
-
-    let tempRes = "";
     let arrStr = [];
+    const randomize = Math.random().toString(36).substring(2);
+    let arrChar = username.split("");
 
-    for (let ch of arrChar) {
-      tempRes = "" + randomize(ch);
+    arrChar.forEach(() => {
+      tempRes = "" + randomize;
       arrStr.push(tempRes);
-    }
+    });
+
+    let tempRes = "" + randomize;
+    arrStr.push(tempRes);
 
     let decryptUsername = arrStr.join("");
 
-    const tokenResult = jwt.sign({ decryptUsername }, "this is test string for jwt", {
-      expiresIn: "3600s",
-    });
+    const tokenResult = jwt.sign(
+      { decryptUsername },
+      "this is test string for jwt",
+      {
+        expiresIn: "3600s",
+      }
+    );
     return tokenResult;
   } else {
-    return false;
+    return null;
   }
 };

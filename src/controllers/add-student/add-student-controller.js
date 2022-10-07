@@ -18,7 +18,7 @@ const avoidDuplicateID = async (reqBody) => {
 const validation = async (requestData) => {
   const isDuplicate = await avoidDuplicateID(requestData);
 
-  if (!isDuplicate) return false;
+  if (!isDuplicate) return null;
 
   const uid = new ShortUniqueId({ length: 10 });
   var salt = bcrypt.genSaltSync(10);
