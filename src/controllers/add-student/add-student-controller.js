@@ -4,12 +4,10 @@ import studentModel from "../../db/models";
 import { Respond } from "../../utils/respondFormat";
 
 const avoidDuplicateID = async (reqBody) => {
-  console.log("reqBody: ", reqBody);
   const allData = await studentModel.student.count({});
-  console.log("allData: ", allData);
   if (allData > 0) {
     const validateName = await studentModel.student.findOne({
-      where: { name: reqBody.name },
+      where: { username: reqBody.username },
     });
 
     return validateName ? false : true;
@@ -26,7 +24,7 @@ const validation = async (requestData) => {
   var salt = bcrypt.genSaltSync(10);
   const newObj = {
     id: uid(),
-    name: requestData.name,
+    username: requestData.username,
     password: bcrypt.hashSync(requestData.password, salt),
   };
 

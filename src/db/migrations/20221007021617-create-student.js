@@ -5,11 +5,11 @@ module.exports = {
     await queryInterface.createTable('students', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(11)
       },
-      name: {
+      username: {
         type: Sequelize.STRING
       },
       password: {
