@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sql6523868",
+    "username": "root",
     "password": "sTW9wPmrbE",
-    "database": "sql6523868",
-    "host": "sql6.freesqldatabase.com",
+    "database": "presensidb",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {

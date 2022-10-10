@@ -1,5 +1,5 @@
 import studentModel from "../../db/models";
-import { tokenization } from "../../services/login-service";
+import { tokenization } from "../../handler/login-handler";
 
 export const getLoginStudent = async (req, res, next) => {
   try {
@@ -44,7 +44,6 @@ export const postLoginStudent = async (req, res, next) => {
         });
     }
   } catch (Err) {
-    console.log('Err: ', Err);
     res.status(500).json({ status: 500, message: Err, token: "" });
   }
 };

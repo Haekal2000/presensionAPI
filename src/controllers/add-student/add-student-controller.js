@@ -7,7 +7,7 @@ const avoidDuplicateID = async (reqBody) => {
   const allData = await studentModel.student.count({});
   if (allData > 0) {
     const validateName = await studentModel.student.findOne({
-      where: { username: reqBody.username },
+      where: { name: reqBody.name },
     });
 
     return validateName ? false : true;
@@ -24,8 +24,10 @@ const validation = async (requestData) => {
   var salt = bcrypt.genSaltSync(10);
   const newObj = {
     id: uid(),
-    username: requestData.username,
+    name: requestData.name,
     password: bcrypt.hashSync(requestData.password, salt),
+    department_id: requestData.departmentId,
+    image: ""
   };
 
   return newObj;
@@ -42,6 +44,7 @@ const postCreateStudent = async (req, res, next) => {
       res.status(400).json(Respond(400, "duplicated data", null, ""));
     }
   } catch (err) {
+    console.log('err: ', err);
     res.status(500).json(Respond(500, "", null, ""));
   }
 };

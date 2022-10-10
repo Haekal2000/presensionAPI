@@ -7,12 +7,22 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING(11)
+        type: Sequelize.STRING
       },
-      username: {
+      name: {
         type: Sequelize.STRING
       },
       password: {
+        type: Sequelize.STRING
+      },
+      department_id: {
+        type: Sequelize.STRING,
+        references: {
+          model: "departments",
+          key: "id",
+        },
+      },
+      image: {
         type: Sequelize.STRING
       },
       createdAt: {

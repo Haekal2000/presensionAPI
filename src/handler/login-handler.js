@@ -5,7 +5,7 @@ import studentModel from "../db/models";
 export const checkValidationUser = async (param) => {
   const { username, password } = param;
   const { count, rows } = await studentModel.student.findAndCountAll({
-    where: { username: username },
+    where: { name: name },
   });
   if (
     count === 1 &&
@@ -19,11 +19,11 @@ export const checkValidationUser = async (param) => {
 export const tokenization = async (param) => {
   const isValid = await checkValidationUser(param);
   if (isValid) {
-    const { username } = param;
+    const { name } = param;
 
     let arrStr = [];
     const randomize = Math.random().toString(36).substring(2);
-    let arrChar = username.split("");
+    let arrChar = name.split("");
 
     arrChar.forEach(() => {
       tempRes = "" + randomize;
@@ -37,10 +37,7 @@ export const tokenization = async (param) => {
 
     const tokenResult = jwt.sign(
       { decryptUsername },
-      "this is test string for jwt",
-      {
-        expiresIn: "3600s",
-      }
+      "this is test string for jwt"
     );
     return tokenResult;
   } else {
