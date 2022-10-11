@@ -1,9 +1,8 @@
 import jwt from 'jsonwebtoken';
 
 export const SecureRoutes = (req, res, next) => {
-    const {authorization} = req.headers;
-    const token = authorization && authorization.split(" ")[1];
-
+    const {authentication} = req.headers;
+    const token = authentication && authentication.split(" ")[1];
         
     jwt.verify(token, "this is test string for jwt", {}, (err, user) =>{
         if (err) {

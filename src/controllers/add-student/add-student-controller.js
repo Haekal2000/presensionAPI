@@ -2,21 +2,14 @@ import bcrypt from "bcrypt";
 import ShortUniqueId from "short-unique-id";
 import studentModel from "../../db/models";
 import { Respond } from "../../utils/respondFormat";
+import { studentAttributes } from "../../utils/studentAttributes";
 
 const avoidDuplicateName = async (reqBody) => {
   const allData = await studentModel.student.count({});
   if (allData > 0) {
     const validateName = await studentModel.student.findOne({
       raw: true,
-      attributes: [
-        `id`,
-        `name`,
-        `password`,
-        "department_id",
-        "image",
-        `createdAt`,
-        `updatedAt`,
-      ],
+      attributes: studentAttributes,
       where: { name: reqBody.name },
     });
     return validateName ? false : true;

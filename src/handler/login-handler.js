@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import studentModel from "../db/models";
+import { studentAttributes } from "../utils/studentAttributes";
 
 export const checkValidationUser = async (param) => {
-  const { username, password } = param;
+  const { name, password } = param;
   const { count, rows } = await studentModel.student.findAndCountAll({
+    raw: true,
+    attributes: studentAttributes,
     where: { name: name },
   });
   if (
