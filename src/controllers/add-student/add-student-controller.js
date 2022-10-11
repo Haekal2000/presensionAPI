@@ -6,7 +6,6 @@ import { Respond } from "../../utils/respondFormat";
 const avoidDuplicateName = async (reqBody) => {
   const allData = await studentModel.student.count({});
   if (allData > 0) {
-    console.log("reqBody: ", reqBody);
     const validateName = await studentModel.student.findOne({
       raw: true,
       attributes: [
@@ -27,7 +26,6 @@ const avoidDuplicateName = async (reqBody) => {
 
 const validation = async (requestData) => {
   const isNotDuplicate = await avoidDuplicateName(requestData);
-  console.log("isNotDuplicate: ", isNotDuplicate);
 
   if (!isNotDuplicate) return null;
 
@@ -48,7 +46,6 @@ const postCreateStudent = async (req, res, next) => {
   try {
     const { body } = req;
     const validated = await validation(body);
-    console.log("validated: ", validated);
     if (validated) {
       await studentModel.student.create(validated);
       res.status(200).json(Respond(200, "Insert User Success", null, ""));
@@ -56,7 +53,6 @@ const postCreateStudent = async (req, res, next) => {
       res.status(400).json(Respond(400, "duplicated data", null, ""));
     }
   } catch (err) {
-    console.log("err: ", err);
     res.status(500).json(Respond(500, "", err, ""));
   }
 };
