@@ -17,6 +17,8 @@ export const getLoginStudent = async (req, res, next) => {
     });
 
     const { name } = departmentData;
+    allUserData["nrpId"] = allUserData["id"];
+    delete allUserData.id; 
 
     res.status(200).json({
       status: 200,
