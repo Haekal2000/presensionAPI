@@ -11,11 +11,9 @@ export const getLoginStudent = async (req, res, next) => {
       where: { name: query.name },
     });
 
-    const { department_id } = allUserData;
-
     const departmentData = await model.department.findOne({
       raw: true,
-      where: { id: department_id },
+      where: { id: allUserData.department_id },
     });
 
     const { name } = departmentData;
