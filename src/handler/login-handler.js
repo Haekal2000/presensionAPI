@@ -4,11 +4,11 @@ import studentModel from "../db/models";
 import { studentAttributes } from "../utils/studentAttributes";
 
 export const checkValidationUser = async (param) => {
-  const { name, password } = param;
+  const { nrpId, password } = param;
   const { count, rows } = await studentModel.student.findAndCountAll({
     raw: true,
     attributes: studentAttributes,
-    where: { name: name },
+    where: { id: nrpId },
   });
   if (
     count === 1 &&
@@ -22,11 +22,11 @@ export const checkValidationUser = async (param) => {
 export const tokenization = async (param) => {
   const isValid = await checkValidationUser(param);
   if (isValid) {
-    const { name } = param;
+    const { nrpId } = param;
 
     let arrStr = [];
     const randomize = Math.random().toString(36).substring(2);
-    let arrChar = name.split("");
+    let arrChar = nrpId.split("");
 
     arrChar.forEach(() => {
       tempRes = "" + randomize;

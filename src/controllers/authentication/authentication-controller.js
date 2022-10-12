@@ -8,7 +8,7 @@ export const getLoginStudent = async (req, res, next) => {
     const allUserData = await model.student.findOne({
       raw: true,
       attributes: { exclude: ["password", "departmentId"] },
-      where: { name: query.name },
+      where: { id: query.nrpId },
     });
 
     const departmentData = await model.department.findOne({
