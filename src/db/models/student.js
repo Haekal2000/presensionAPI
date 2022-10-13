@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       const { department } = models;
       student.belongsTo(department, {
         foreignKey: "department_id",
-        as: "student"
+        as: "department"
       })
     }
   }
