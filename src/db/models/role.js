@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      const { lecturer } = models;
+      department.hasMany(lecturer, { as: "role" })
     }
   }
   role.init({
