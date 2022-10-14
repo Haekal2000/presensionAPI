@@ -17,11 +17,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// references: {
-//   model: "faculties",
-//   key: "id",
-// },
-
 app.use(router);
 
 app.listen(port, () => {

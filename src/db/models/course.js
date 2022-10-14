@@ -10,14 +10,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       const { schedule } = models;
-      course.hasMany(schedule);
+      course.hasMany(schedule, {as: "schedule"});
     }
   }
   course.init(
     {
       name: DataTypes.STRING,
       credits: DataTypes.STRING,
-      department_id: DataTypes.STRING,
+      department_id:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "departments",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,
