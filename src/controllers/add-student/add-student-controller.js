@@ -32,6 +32,7 @@ const validation = async (requestData) => {
     name: requestData.name,
     password: bcrypt.hashSync(requestData.password, bcrypt.genSaltSync(10)),
     department_id: requestData.department_id,
+    academic_period_id: requestData.academic_period_id,
     image: "https://i.ibb.co/QNXQM3F/user.png",
   };
 
@@ -43,6 +44,7 @@ const validation = async (requestData) => {
     name: Joi.string().min(3).max(30).required(),
     password: Joi.string().required(),
     department_id: Joi.string().required(),
+    academic_period_id: Joi.string().required(),
     image: Joi.string(),
   });
 

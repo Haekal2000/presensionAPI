@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { department } = models;
+      const { department, academicperiod } = models;
       student.belongsTo(department, {
         foreignKey: "department_id",
         as: "department"
+      })
+      student.belongsTo(academicperiod,  {
+        foreignKey: "academic_period_id",
+        as: "academicPeriod"
       })
     }
   }
@@ -30,7 +34,16 @@ module.exports = (sequelize, DataTypes) => {
         key: "id",
       },
     },
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    academic_period_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      foreignKey: true,
+      references: {
+        model: "academicperiods",
+        key: "id",
+      },
+    },
   }, {
     sequelize,
     modelName: 'student',

@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const {schedule} = models;
+      const {schedule, student} = models;
       academicperiod.hasMany(schedule);
+      academicperiod.hasMany(student);
     }
   }
   academicperiod.init({

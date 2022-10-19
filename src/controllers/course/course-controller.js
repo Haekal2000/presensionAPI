@@ -2,7 +2,7 @@ import model, { sequelize } from "../../db/models";
 
 export const getCourse = async (req, res, next) => {
   try {
-    const { department_id, search } = req.query;
+    const { department_id, academic_period_id, search } = req.query;
 
     const resp = await sequelize.query(
       `SELECT 
@@ -10,6 +10,7 @@ export const getCourse = async (req, res, next) => {
       course.name,
       course.credits,
       course.department_id,
+      schedule.academic_period_id as academicPeriodId,
       schedule.day AS day,
       schedule.hours AS hours,
       schedule.room AS room
