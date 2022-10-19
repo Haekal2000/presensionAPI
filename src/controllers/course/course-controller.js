@@ -19,7 +19,7 @@ export const getCourse = async (req, res, next) => {
           LEFT OUTER JOIN
       schedules AS schedule ON course.id = schedule.course_id
   WHERE
-      (course.department_id = "${department_id}" ${
+      (course.department_id = "${department_id}" AND schedule.academic_period_id ="${academic_period_id}"  ${
         search ? `AND course.name ="${search}"` : ""
       });`
     );
