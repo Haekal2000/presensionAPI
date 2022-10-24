@@ -1,14 +1,12 @@
 import model from "../../db/models";
 import { tokenization } from "../../handler/login-handler";
-import { studentAttributes } from "../../utils/studentAttributes";
 
-export const getLoginStudent = async (req, res, next) => {
+export const getStudentData = async (nrpId) => {
   try {
-    let { query } = req;
     const allUserData = await model.student.findOne({
       raw: true,
       attributes: { exclude: ["password", "departmentId", "academicperiodId"] },
-      where: { id: query.nrpId },
+      where: { id: nrpId },
     });
 
     const departmentData = await model.department.findOne({
@@ -18,21 +16,11 @@ export const getLoginStudent = async (req, res, next) => {
 
     const { name } = departmentData;
     allUserData["nrpId"] = allUserData["id"];
-    delete allUserData.id; 
-
-    res.status(200).json({
-      status: 200,
-      message: "Access Granted",
-      data: { ...allUserData, departmentName: name },
-      innerMessage: "",
-    });
+    delete allUserData.id;
+    
+    return { ...allUserData, departmentName: name };
   } catch (err) {
-    res.status(500).json({
-      status: 500,
-      message: JSON.stringify(err),
-      data: [],
-      innerMessage: "",
-    });
+    return null;
   }
 };
 
@@ -40,10 +28,21 @@ export const postLoginStudent = async (req, res, next) => {
   try {
     let { body } = req;
     const userToken = await tokenization(body);
-    if (userToken) {
+    const _userData = await getStudentData(body.nrpId);
+    if (userToken && _userData) {
       res
         .status(200)
-        .json({ status: 200, message: "success", data: { token: userToken } });
+        .json({
+          status: 200,
+          message: "success",
+          data: { token: userToken, userData: _userData },
+        });
+    } else if (_userData) {
+      res.status(400).json({
+        status: 400,
+        message: "data not exist",
+        token: "",
+      });
     } else {
       res.status(400).json({
         status: 400,
