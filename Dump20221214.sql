@@ -18,6 +18,32 @@ USE `presensidb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `academicperiods`
+--
+
+DROP TABLE IF EXISTS `academicperiods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `academicperiods` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `academicperiods`
+--
+
+LOCK TABLES `academicperiods` WRITE;
+/*!40000 ALTER TABLE `academicperiods` DISABLE KEYS */;
+INSERT INTO `academicperiods` VALUES ('28104643-57bb-466b-9a68-091f3322c450','Antara 2022/2023','2022-10-13 06:55:14','2022-10-13 06:55:14'),('b68be57f-c28c-4b46-867a-d92714465eab','Antara 2021/2022','2022-10-13 06:55:14','2022-10-13 06:55:14'),('c3041736-4975-4579-af04-280e78c5c8f3','Genap 2021/2022','2022-10-13 06:55:14','2022-10-13 06:55:14'),('d85d7d97-c26b-4fcc-bead-6916cf7a039f','Genap 2022/2023','2022-10-13 06:55:14','2022-10-13 06:55:14'),('ef3a2809-61b1-4750-b11e-91456d4d11ca','Ganjil 2022/2023','2022-10-13 06:55:14','2022-10-13 06:55:14'),('f84ecfdb-06ca-4db0-b33c-1c503a6b9e85','Ganjil 2021/2022','2022-10-13 06:55:14','2022-10-13 06:55:14');
+/*!40000 ALTER TABLE `academicperiods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `courses`
 --
 
@@ -103,6 +129,105 @@ INSERT INTO `faculties` VALUES ('10ef5262-22cb-4500-b224-a35d5b5dd403','Teknolog
 UNLOCK TABLES;
 
 --
+-- Table structure for table `lecturers`
+--
+
+DROP TABLE IF EXISTS `lecturers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lecturers` (
+  `nik` varchar(255) NOT NULL,
+  `nidn` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `department_id` varchar(255) DEFAULT NULL,
+  `role_id` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`nik`),
+  KEY `department_id` (`department_id`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `lecturers_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  CONSTRAINT `lecturers_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lecturers`
+--
+
+LOCK TABLES `lecturers` WRITE;
+/*!40000 ALTER TABLE `lecturers` DISABLE KEYS */;
+INSERT INTO `lecturers` VALUES ('710001','','Risal, S.T., M.T.','laurentius.risal@it.maranatha.edu','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','494a52ae-46c9-4903-b60f-8e0b7ee1a438','2022-10-13 08:03:13','2022-10-13 08:03:13'),('710003','','Djoni Setiawan Kartawihardja, S.T., M.T. ','djoni.sk@it.maranatha.edu','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('710004','','Dr. Hapnes Toba, M.Sc. ','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','bc774d8d-13a8-4ba9-bfe7-88ac688efa2d','2022-10-13 08:03:13','2022-10-13 08:03:13'),('710071','','Tiur Gantini, S.T., M.T.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','f440e2ef-4012-4484-98fc-154add18ead7','2022-10-13 08:03:13','2022-10-13 08:03:13'),('710096','','Sulaeman Santoso, S.Kom., M.T. ','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720001','','Hendra Bunyamin, S.Si., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720004','','Ir. Teddy Marcus Zakaria, M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720062','','Dr. Bernard R Sutedja, S.Kom., M.Kom.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720080','','Tjatur Kandaga, S.Si., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720140','','Dr. Ir. Mewati Ayub, M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720211','','Diana Trivena Yulianti, S.Kom., M.T.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720212','','Daniel Jahja Surjawan, S.Kom., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720225','','Meliana Christianti Johan, S.Kom., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720246','','Timotius Witono, S.Kom., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720247','','Erico Darmawan Handoyo, S.Kom., M.T.','--','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720282','','Andreas Widjaja, S.Si., M.Sc., Ph.D','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720286','','Julianti Kasih, M.Kom.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720302','','Maresha Caroline, S.Kom., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720303','','Wenny Franciska Senjaya, S.Kom., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','bc774d8d-13a8-4ba9-bfe7-88ac688efa2d','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720307','','Robby Tan, S.T., M.Kom.','robby.tan@it.maranatha.edu','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','bc774d8d-13a8-4ba9-bfe7-88ac688efa2d','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720309','','Oscar Karnalim, S.T., M.T.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','bc774d8d-13a8-4ba9-bfe7-88ac688efa2d','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720317','','Dr. Swat Lie, S.H., M.Hum.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','f440e2ef-4012-4484-98fc-154add18ead7','2022-10-13 08:03:13','2022-10-13 08:03:13'),('720319','','Rossevine Artha Nathasya, S.Kom.','-','admin12345',1,'46c0d3ec-0063-4f26-8f14-6be3bbe99f07','f440e2ef-4012-4484-98fc-154add18ead7','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730001','','Radiant Victor Imbar, S. Kom., M.T.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','f440e2ef-4012-4484-98fc-154add18ead7','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730003','','Yenni M. Djajalaksana, Ph.D.','--','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','f440e2ef-4012-4484-98fc-154add18ead7','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730009','','Doro Edi, S.T., M. Kom.','--','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730011','','Setia Budi, S.Kom., M.Cs., Ph.D.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730015','','Niko Ibrahim, S.Kom., M.I.T.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730049','','Adelia, S. Kom., M.T.','--','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13'),('730062','','Sendy Ferdian Sujadi, S.Kom., M.T.','-','admin12345',1,'466b6f96-b463-4688-991c-5f78ee3e00e0','7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','2022-10-13 08:03:13','2022-10-13 08:03:13');
+/*!40000 ALTER TABLE `lecturers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roles` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES ('494a52ae-46c9-4903-b60f-8e0b7ee1a438','admin','2022-10-13 06:35:06','2022-10-13 06:35:06'),('7e185b73-68be-4ec5-a7e4-2ccb71f33bdc','user','2022-10-13 06:35:06','2022-10-13 06:35:06'),('bc774d8d-13a8-4ba9-bfe7-88ac688efa2d','user-faculty','2022-10-13 06:35:06','2022-10-13 06:35:06'),('f440e2ef-4012-4484-98fc-154add18ead7','user-department','2022-10-13 06:35:06','2022-10-13 06:35:06');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schedules`
+--
+
+DROP TABLE IF EXISTS `schedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `schedules` (
+  `id` varchar(255) NOT NULL,
+  `course_id` varchar(255) DEFAULT NULL,
+  `lecturer_nik` varchar(255) DEFAULT NULL,
+  `academic_period_id` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `day` varchar(255) DEFAULT NULL,
+  `hours` varchar(255) DEFAULT NULL,
+  `room` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  KEY `lecturer_nik` (`lecturer_nik`),
+  KEY `academic_period_id` (`academic_period_id`),
+  CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  CONSTRAINT `schedules_ibfk_2` FOREIGN KEY (`lecturer_nik`) REFERENCES `lecturers` (`nik`),
+  CONSTRAINT `schedules_ibfk_3` FOREIGN KEY (`academic_period_id`) REFERENCES `academicperiods` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schedules`
+--
+
+LOCK TABLES `schedules` WRITE;
+/*!40000 ALTER TABLE `schedules` DISABLE KEYS */;
+INSERT INTO `schedules` VALUES ('025d0c9c-2ea6-4b77-883f-36dfe47555b9','IN211','710003','b68be57f-c28c-4b46-867a-d92714465eab','2022-10-14 07:34:00','2022-10-14 07:34:00','Senin','01.00 - 15.00','Lab Komputer'),('18f209bb-b38d-4d44-9f26-fc7a726eba9e','IN212','710004','c3041736-4975-4579-af04-280e78c5c8f3','2022-10-14 07:34:00','2022-10-14 07:34:00','Jumat','10.00 - 12.00','Lab Komputer'),('682b14ab-c53e-4095-82e6-531780784de6','IN214','710096','ef3a2809-61b1-4750-b11e-91456d4d11ca','2022-10-14 07:34:00','2022-10-14 07:34:00','Rabu','08.00 - 10.00','Lab Komputer'),('8e86458c-37b4-45e0-844e-610d088f28aa','IN224','720211','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Jumat','10.00 - 12.00','Lab Komputer'),('a04cb7f8-0961-47b0-bacc-9143b2a95f22','IN213','710071','d85d7d97-c26b-4fcc-bead-6916cf7a039f','2022-10-14 07:34:00','2022-10-14 07:34:00','Rabu','15.00 - 17.00','Lab Komputer'),('b1d4c866-5f5b-4f2a-ae43-ab9773c00e2f','IN216','720001','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Kamis','15.00 - 17.00','Lab Komputer'),('c84a21ec-43dd-4277-aaaf-d86b1ce7a542','IN220','730009','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Senin','08.00 - 10.00','Lab Komputer'),('e027878e-22c0-4847-a979-5517a2df5314','IN210','710001','28104643-57bb-466b-9a68-091f3322c450','2022-10-14 07:34:00','2022-10-14 07:34:00','Selasa','08.00 - 10.00','Lab Jaringan Komputer');
+/*!40000 ALTER TABLE `schedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `SequelizeMeta`
 --
 
@@ -122,7 +247,7 @@ CREATE TABLE `SequelizeMeta` (
 
 LOCK TABLES `SequelizeMeta` WRITE;
 /*!40000 ALTER TABLE `SequelizeMeta` DISABLE KEYS */;
-INSERT INTO `SequelizeMeta` VALUES ('20221007021617-create-student.js'),('20221010115754-create-faculty.js'),('20221010122328-create-student.js'),('20221010122924-create-department.js'),('20221010123212-create-faculty.js'),('20221010123328-create-department.js'),('20221010124350-create-faculty.js'),('20221010131349-create-faculty.js'),('20221010131434-create-department.js'),('20221010131527-create-department.js'),('20221010131623-create-student.js'),('20221011012414-create-course.js'),('20221011073005-create-student.js');
+INSERT INTO `SequelizeMeta` VALUES ('20221007021617-create-student.js'),('20221010115754-create-faculty.js'),('20221010122328-create-student.js'),('20221010122924-create-department.js'),('20221010123212-create-faculty.js'),('20221010123328-create-department.js'),('20221010124350-create-faculty.js'),('20221010131349-create-faculty.js'),('20221010131434-create-department.js'),('20221010131527-create-department.js'),('20221010131623-create-student.js'),('20221011012414-create-course.js'),('20221011073005-create-student.js'),('20221013063039-create-role.js'),('20221013065203-create-academicperiod.js'),('20221013070338-create-lecturer.js'),('20221013072714-create-lecturer.js'),('20221013090805-create-schedule.js'),('20221013121906-addcolumncourse.js'),('20221013123156-deletecolumncourse.js'),('20221013123241-deletecolumncourse2.js'),('20221013123611-deletecolumncourse3.js'),('20221013123905-addcolumnschedules.js'),('20221014072506-addcolumnschedules1.js'),('20221014073138-addcolumnschedules2.js'),('20221014080501-addcolumnschedules3.js'),('20221109021950-change-academic-column.js');
 /*!40000 ALTER TABLE `SequelizeMeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,9 +266,12 @@ CREATE TABLE `students` (
   `image` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
+  `academic_period_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `department_id` (`department_id`),
-  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`)
+  KEY `academic_period_id` (`academic_period_id`),
+  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  CONSTRAINT `students_ibfk_2` FOREIGN KEY (`academic_period_id`) REFERENCES `academicperiods` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -153,17 +281,9 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('FVXypV9FLp','wibu','$2b$10$B2RfJLVrAPaKp8l62/VNGuQS3AdX4IQcbycQC8SZtvh1aeh.TSW5u','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-11 07:35:50','2022-10-11 07:35:50'),('L3XqVmuPY2','haekal wibu','$2b$10$SdJ09KmY5W8WVg5CvpXgBOCoOGUxmxcDmrR6GMSU8Uiedpp2aNOn.','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-11 10:57:44','2022-10-11 10:57:44'),('O7i8oXpcVZ','haekal 123','$2b$10$mJsmdAHLYOa/SfEVXI9z6OX6HXkGK5nIEiGT13mRKzSMqeliCoDMK','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-11 10:00:01','2022-10-11 10:00:01'),('zKJPhXU12I','haekal','$2b$10$EsC6avFbVWxuPJagPt/qMuFQ6dsQ8iCSgs2MR1.C5UYSvRVN.dXJW','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-11 07:31:53','2022-10-11 07:31:53');
+INSERT INTO `students` VALUES ('1973010','haekal','$2b$10$MaZ0QIFdnfKnzLLKBmh3He.BseNUwqM4MaB6DN2xQJqLi/XHfLERW','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-24 04:41:56','2022-10-24 04:41:56','28104643-57bb-466b-9a68-091f3322c450');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'presensidb'
---
-
---
--- Dumping routines for database 'presensidb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -174,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-11 19:04:15
+-- Dump completed on 2022-12-14 18:32:44
