@@ -4,9 +4,12 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import sequelizeConnection from './src/utils/DBconnection';
 import router from './src/routes/routes';
+import * as dotenv from 'dotenv';
 
 const app = express();
 const port = 3000;
+
+dotenv.config();
 
 app.use(cors());
 
