@@ -3,21 +3,24 @@ import nodemailer from "nodemailer";
 export const sendMail = async (req, res, next) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: "outlook",
+      service: "gmail",
       auth: {
-        user: "haekal762013@gmail.com",
-        pass: "kal1243576",
+        user: "TAMengenaskan@gmail.com",
+        pass: "simsalabim12345",
       },
+      port: 465,
+      host: "smtp.gmail.com"
     });
 
     const mailOptions = {
-      from: "renaldykhrsm8@gmail.com",
+      from: "TAMengenaskan@gmail.com",
       to: "1973009@maranatha.ac.id",
       subject: "Sending Email using Nodejs",
       html: "<h1>Welcome</h1><p>That was easy!</p>",
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
+        if(err) console.log(err);
         res.status(200).json({ status: 200, message: `email sent: ${info}`});
     });
   } catch (err) {
