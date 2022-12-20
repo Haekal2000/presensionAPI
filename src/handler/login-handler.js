@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import studentModel from "../db/models";
 import { studentAttributes } from "../utils/studentAttributes";
 
-export const checkValidationUser = async (param) => {
+const checkValidationStudent = async (param) => {
   const { nrpId, password } = param;
   const { count, rows } = await studentModel.student.findAndCountAll({
     raw: true,
@@ -19,14 +19,43 @@ export const checkValidationUser = async (param) => {
   return false;
 };
 
-export const tokenization = async (param) => {
-  const isValid = await checkValidationUser(param);
+export const checkValidationLecture = async (param) => {
+  const { nik: nikLecture } = param;
+  const { count } = await studentModel.lecturer.findAndCountAll({
+    raw: true,
+    attributes: {
+      exclude: ["id", "departmentId", "roleId"],
+    },
+    where: { nik: nikLecture },
+  });
+
+  if (count === 1) {
+    return true;
+  }
+  return false;
+};
+
+export const tokenization = async (param, isStudent) => {
+  let isValid = false;
+
+  if (isStudent) {
+    isValid = await checkValidationStudent(param);
+  } else {
+    isValid = await checkValidationLecture(param);
+  }
+
   if (isValid) {
-    const { nrpId } = param;
+    const { nrpId, nik } = param;
 
     let arrStr = [];
     const randomize = Math.random().toString(36).substring(2);
-    let arrChar = nrpId.split("");
+    let arrChar = "";
+
+    if (isStudent) {
+      arrChar = nrpId.split("");
+    } else {
+      arrChar = nik.split("");
+    }
 
     arrChar.forEach(() => {
       tempRes = "" + randomize;
