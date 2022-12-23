@@ -16,9 +16,11 @@ const getStudentData = async (nrpId) => {
 
     const { name } = departmentData;
     studentData["nrpId"] = studentData["id"];
-    delete allUserData.id;
+    delete studentData.id;
 
-    return { ...studentData, departmentName: name };
+    const fixedData = { ...studentData, departmentName: name };
+
+    return fixedData;
   } catch {
     return null;
   }
@@ -43,8 +45,9 @@ const getLectureData = async (_nik) => {
 export const postLoginStudent = async (req, res, next) => {
   try {
     let { body } = req;
-    const userToken = await tokenization(body);
+    const userToken = await tokenization(body, true);
     const _userData = await getStudentData(body.nrpId);
+
     if (userToken && _userData) {
       res.status(200).json({
         status: 200,
@@ -60,7 +63,7 @@ export const postLoginStudent = async (req, res, next) => {
     } else {
       res.status(400).json({
         status: 400,
-        message: "The Username or Password You Entered is Incorrect",
+        message: "The nrpid or Password You Entered is Incorrect",
         token: "",
       });
     }
@@ -72,7 +75,7 @@ export const postLoginStudent = async (req, res, next) => {
 export const postLoginLecture = async (req, res, next) => {
   try {
     let { body } = req;
-    const userToken = await tokenization(body);
+    const userToken = await tokenization(body, false);
     const lectureData = await getLectureData(body.nik);
 
     if (userToken && lectureData) {
@@ -81,13 +84,14 @@ export const postLoginLecture = async (req, res, next) => {
         message: "success",
         data: { token: userToken, userData: lectureData },
       });
-    } else if (lectureData) {
+    } else if(lectureData) {
       res.status(400).json({
         status: 400,
         message: "data not exist",
         token: "",
       });
     }
+  
   } catch (Err) {
     res.status(500).json({ status: 500, message: Err, token: "" });
   }

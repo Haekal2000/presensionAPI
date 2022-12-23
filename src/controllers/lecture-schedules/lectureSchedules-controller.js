@@ -1,4 +1,3 @@
-import { Sequelize } from "sequelize";
 import model from "../../db/models";
 
 const getScheduleData = (nik) => {
@@ -20,7 +19,7 @@ const getScheduleData = (nik) => {
     .then((param) => {
       return param;
     })
-    .catch((err) => {
+    .catch(() => {
       return [];
     });
   return data;

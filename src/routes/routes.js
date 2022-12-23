@@ -10,6 +10,7 @@ import { sendMail } from "../controllers/sendMail/sendMail-controller";
 import { SecureRoutes } from "../middlewares/secure-routes";
 
 const router = Router();
+
 router.post("/student/create", postCreateStudent);
 router.post("/login", async (req, res, next) => {
   await postLoginStudent(req, res, next);

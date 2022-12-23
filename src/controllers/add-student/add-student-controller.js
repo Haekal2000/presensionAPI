@@ -34,6 +34,7 @@ const validation = async (requestData) => {
     department_id: requestData.department_id,
     academic_period_id: requestData.academic_period_id,
     image: "https://i.ibb.co/QNXQM3F/user.png",
+    email: requestData.email,
   };
 
   const schema = Joi.object({
@@ -46,6 +47,7 @@ const validation = async (requestData) => {
     department_id: Joi.string().required(),
     academic_period_id: Joi.string().required(),
     image: Joi.string(),
+    email: Joi.string().required(),
   });
 
   try {

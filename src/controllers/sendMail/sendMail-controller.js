@@ -1,9 +1,12 @@
 import nodemailer from "nodemailer";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
+import CryptoJS from 'crypto-js';
 
 export const sendMail = async (req, res, next) => {
   dotenv.config();
-  
+  const {body} = req;
+  const { schedule_id, courseName } = body;
+
   const transporter = nodemailer.createTransport({
     service: "Outlook365",
     auth: {
@@ -12,18 +15,17 @@ export const sendMail = async (req, res, next) => {
     },
   });
 
-  const testToken = '1234';
-
   transporter.sendMail(
     {
       from: process.env.SENDER_EMAIL,
       to: "renaldykhrsm8@gmail.com",
-      subject: "TOKE COURSE",
-      html: `<html>
-    <body>
-      <h3>your course token: <strong>${testToken}</strong></h3>
-    </body>
-  </html>`,
+      subject: `Info For Course ${courseName} Schedule`,
+      html: `
+      <html>
+        <body>
+          <h3>your course token: <strong>${schedule_id}</strong></h3>
+        </body>
+      </html>`,
     },
     (err, info) => {
       if (err) res.status(500).json({ status: 500, message: err });
