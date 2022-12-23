@@ -5,6 +5,7 @@ import {
   postLoginStudent,
 } from "../controllers/authentication/authentication-controller";
 import { getCourse } from "../controllers/course/course-controller";
+import { GetLectureSchedules } from "../controllers/lecture-schedules/lectureSchedules-controller";
 import { sendMail } from "../controllers/sendMail/sendMail-controller";
 import { SecureRoutes } from "../middlewares/secure-routes";
 
@@ -19,6 +20,9 @@ router.post("/login-lecture", async (req, res, next) => {
 router.get("/course", SecureRoutes, async (req, res, next) => {
   await getCourse(req, res, next);
 });
+router.get("/get-lecture-schedule", SecureRoutes, async (req, res, next) => {
+  await GetLectureSchedules(req, res, next);
+})
 router.post("/sendEmail", async (req, res, next) => {
   await sendMail(req, res, next)
 });

@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import studentModel from "../db/models";
+import model from "../db/models";
 import { studentAttributes } from "../utils/studentAttributes";
 
 const checkValidationStudent = async (param) => {
   const { nrpId, password } = param;
-  const { count, rows } = await studentModel.student.findAndCountAll({
+  const { count, rows } = await model.student.findAndCountAll({
     raw: true,
     attributes: studentAttributes,
     where: { id: nrpId },
@@ -21,7 +21,7 @@ const checkValidationStudent = async (param) => {
 
 export const checkValidationLecture = async (param) => {
   const { nik: nikLecture } = param;
-  const { count } = await studentModel.lecturer.findAndCountAll({
+  const { count } = await model.lecturer.findAndCountAll({
     raw: true,
     attributes: {
       exclude: ["id", "departmentId", "roleId"],
