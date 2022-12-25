@@ -17,7 +17,7 @@ export const sendMail = async (req, res, next) => {
   transporter.sendMail(
     {
       from: process.env.SENDER_EMAIL,
-      to: "renaldykhrsm8@gmail.com",
+      to: "1973009@maranatha.ac.id",
       subject: "TOKE COURSE",
       html: `<html>
     <body>
