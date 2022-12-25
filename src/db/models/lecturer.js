@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   lecturer.init(
     {
-      nidn: DataTypes.STRING,
+      nik: DataTypes.STRING,
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,

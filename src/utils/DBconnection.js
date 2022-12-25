@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize";
 const sequelizeConnection = new Sequelize(
   "presensidb",
   "root",
-  "kal1243576",
+  "sTW9wPmrbE",
   {
     host: "127.0.0.1",
     port: 3306,
