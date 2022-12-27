@@ -1,11 +1,13 @@
 import nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
-import CryptoJS from 'crypto-js';
+import model from "../../db/models";
+import { encrypt } from "../../utils/encryptor";
+import { studentAttributes } from "../../utils/studentAttributes";
 
-export const sendMail = async (req, res, next) => {
+export const sendMail = (req, res, next) => {
   dotenv.config();
-  const {body} = req;
-  const { schedule_id, courseName } = body;
+  const { body } = req;
+  const { courseName, course_id, department_id, academic_period_id } = body;
 
   const transporter = nodemailer.createTransport({
     service: "Outlook365",
@@ -15,21 +17,42 @@ export const sendMail = async (req, res, next) => {
     },
   });
 
-  transporter.sendMail(
-    {
-      from: process.env.SENDER_EMAIL,
-      to: "renaldykhrsm8@gmail.com",
-      subject: `Info For Course ${courseName} Schedule`,
-      html: `
-      <html>
-        <body>
-          <h3>your course token: <strong>${schedule_id}</strong></h3>
-        </body>
-      </html>`,
-    },
-    (err, info) => {
-      if (err) res.status(500).json({ status: 500, message: err });
-      res.status(200).json({ status: 200, message: `email sent!` });
-    }
-  );
+  model.student
+    .findAll({
+      raw: true,
+      attributes: studentAttributes,
+      where: {
+        department_id: department_id,
+        academic_period_id: academic_period_id,
+      },
+    })
+    .then((item) => {
+      const listStudent = item.map((item) => item.email).join(", ");
+      const token = encrypt(course_id);
+      transporter.sendMail(
+        {
+          from: process.env.SENDER_EMAIL,
+          to: listStudent,
+          subject: `Info For Course ${courseName} Schedule`,
+          html: `
+            <html>
+              <body>
+                <h3>Your Course Token for ${courseName} is: <strong>${token}</strong></h3>
+              </body>
+            </html>
+          `,
+        },
+        (err, info) => {
+          if (err) res.status(500).json({ status: 500, message: err });
+          res.status(200).json({ status: 200, message: `email sent!` });
+        }
+      );
+    })
+    .catch(() => {
+      res.status(400).json({
+        status: 400,
+        message: "student data not found",
+        token: "",
+      });
+    });
 };

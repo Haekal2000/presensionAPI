@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import Joi from "joi";
 import { Op } from "sequelize";
-import ShortUniqueId from "short-unique-id";
 import studentModel from "../../db/models";
 import { Respond } from "../../utils/respondFormat";
 import { studentAttributes } from "../../utils/studentAttributes";

@@ -4,6 +4,7 @@ export const studentAttributes = [
   `password`,
   "department_id",
   "image",
+  "email",
   `createdAt`,
   `updatedAt`,
 ];

@@ -11,7 +11,7 @@ const getScheduleData = (nik) => {
         {
           model: model.course,
           as: "course",
-          attributes: ["name"],
+          attributes: ["name", "department_id"],
         },
       ],
       raw: false,

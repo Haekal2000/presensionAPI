@@ -21,6 +21,7 @@ router.post("/login-lecture", async (req, res, next) => {
 router.get("/course", SecureRoutes, async (req, res, next) => {
   await getCourse(req, res, next);
 });
+router.get("")
 router.get("/get-lecture-schedule", SecureRoutes, async (req, res, next) => {
   await GetLectureSchedules(req, res, next);
 })
