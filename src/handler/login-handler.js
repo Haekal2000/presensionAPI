@@ -10,13 +10,9 @@ const checkValidationStudent = async (param) => {
     attributes: studentAttributes,
     where: { id: nrpId },
   });
-  if (
-    count === 1 &&
-    bcrypt.compareSync(password, rows[0]["password"]) === true
-  ) {
-    return true;
-  }
-  return false;
+  return !!(
+    count === 1 && bcrypt.compareSync(password, rows[0]["password"]) === true
+  );
 };
 
 export const checkValidationLecture = async (param) => {

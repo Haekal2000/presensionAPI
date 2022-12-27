@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class student extends Model {
     /**
@@ -11,43 +9,49 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { department, academicperiod } = models;
+      const { department, academicperiod, finishedcourse } = models;
       student.belongsTo(department, {
         foreignKey: "department_id",
-        as: "department"
-      })
-      student.belongsTo(academicperiod,  {
+        as: "department",
+      });
+      student.belongsTo(academicperiod, {
         foreignKey: "academic_period_id",
-        as: "academicPeriod"
-      })
+        as: "academicPeriod",
+      });
+      student.hasOne(finishedcourse, {
+        as: "finishedcourse",
+      });
     }
   }
-  student.init({
-    name: DataTypes.STRING,
-    password: DataTypes.STRING,
-    department_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "departments",
-        key: "id",
+  student.init(
+    {
+      name: DataTypes.STRING,
+      password: DataTypes.STRING,
+      department_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "departments",
+          key: "id",
+        },
       },
-    },
-    image: DataTypes.STRING,
-    academic_period_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "academicperiods",
-        key: "id",
+      image: DataTypes.STRING,
+      academic_period_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "academicperiods",
+          key: "id",
+        },
       },
+      email: DataTypes.STRING,
     },
-    email: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'student',
-  });
+    {
+      sequelize,
+      modelName: "student",
+    }
+  );
   return student;
 };

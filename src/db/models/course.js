@@ -9,8 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { schedule } = models;
+      const { schedule, finishedcourse } = models;
       course.hasMany(schedule, {as: "schedule"});
+      course.hasOne(finishedcourse, {as: "finishedcourse"});
     }
   }
   course.init(

@@ -4,18 +4,10 @@ import model from "../../db/models";
 import { encrypt } from "../../utils/encryptor";
 import { studentAttributes } from "../../utils/studentAttributes";
 
-export const sendMail = (req, res, next) => {
-  dotenv.config();
-  const { body } = req;
-  const { courseName, course_id, department_id, academic_period_id } = body;
+dotenv.config();
 
-  const transporter = nodemailer.createTransport({
-    service: "Outlook365",
-    auth: {
-      user: process.env.SENDER_EMAIL,
-      pass: process.env.SENDER_PASS,
-    },
-  });
+export const sendMail = (req, res, next) => {
+  const { courseName, course_id, department_id, academic_period_id } = req.body;
 
   model.student
     .findAll({
@@ -29,6 +21,13 @@ export const sendMail = (req, res, next) => {
     .then((item) => {
       const listStudent = item.map((item) => item.email).join(", ");
       const token = encrypt(course_id);
+      const transporter = nodemailer.createTransport({
+        service: "Outlook365",
+        auth: {
+          user: process.env.SENDER_EMAIL,
+          pass: process.env.SENDER_PASS,
+        },
+      });
       transporter.sendMail(
         {
           from: process.env.SENDER_EMAIL,
