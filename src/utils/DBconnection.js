@@ -1,9 +1,12 @@
 import { Sequelize } from "sequelize";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const sequelizeConnection = new Sequelize(
   "presensidb",
   "root",
-  "sTW9wPmrbE",
+  process.env.DATABASE_PASSWORD,
   {
     host: "127.0.0.1",
     port: 3306,
