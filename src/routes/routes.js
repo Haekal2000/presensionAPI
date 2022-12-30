@@ -12,10 +12,12 @@ import { DeleteFinishedCourse } from "../controllers/remove-finished-course/remo
 import { sendMail } from "../controllers/sendMail/sendMail-controller";
 import { GetStudentSchedules } from "../controllers/student-schedules/studentSchedules-controller";
 import { SecureRoutes } from "../middlewares/secure-routes";
+import { PutClosingCourse } from "../controllers/closing-course/closingcourse-controller";
+import { GetLecturerSession } from "../controllers/lecturer-session/LecturerSession-controller";
 
 const router = Router();
 
-router.post("/student/create", postCreateStudent);
+router.post("/create-student", postCreateStudent);
 router.post("/login", async (req, res, next) => {
   await postLoginStudent(req, res, next);
 });
@@ -32,7 +34,7 @@ router.get("/student-schedule", SecureRoutes, (req, res, next) => {
 router.get("/lecture-schedule", SecureRoutes, async (req, res, next) => {
   await GetLectureSchedules(req, res, next);
 });
-router.post("/sendEmail", (req, res, next) => {
+router.post("/send-email", (req, res, next) => {
   sendMail(req, res, next);
 });
 router.post("/accept-course", (req, res, next) => {
@@ -44,4 +46,10 @@ router.post("/add-schedule", (req, res, next) => {
 router.delete("/delete-finishedcourse", (req, res, next) => {
   DeleteFinishedCourse(req, res, next);
 });
+router.put("/closing-course", (req, res, next) => {
+  PutClosingCourse(req, res, next);
+});
+router.get("/lecturer-session", (req, res, next) => {
+  GetLecturerSession(req, res, next);
+})
 export default router;

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class finishedcourse extends Model {
     /**
@@ -14,64 +12,74 @@ module.exports = (sequelize, DataTypes) => {
       const { student, lecturer, course, schedule } = models;
       finishedcourse.belongsTo(student, {
         foreignKey: "student_id",
-        as: "student"
+        as: "student",
       });
       finishedcourse.belongsTo(lecturer, {
         foreignKey: "lecturer_nik",
-        as: "lecturer"
+        as: "lecturer",
       });
       finishedcourse.belongsTo(course, {
         foreignKey: "course_id",
-        as: "course"
-      })
+        as: "course",
+      });
       finishedcourse.belongsTo(schedule, {
         foreignKey: "schedule_id",
-        as: "schedule"
-      })
+        as: "schedule",
+      });
     }
   }
-  finishedcourse.init({
-    student_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "students",
-        key: "id",
+  finishedcourse.init(
+    {
+      student_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "students",
+          key: "id",
+        },
+      },
+      lecturer_nik: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "lecturers",
+          key: "nik",
+        },
+      },
+      course_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "courses",
+          key: "id",
+        },
+      },
+      schedule_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+          model: "schedules",
+          key: "id",
+        },
+      },
+      acceptDate: DataTypes.DATE,
+      isPresent: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      isDone: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
-    lecturer_nik: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "lecturers",
-        key: "nik",
-      },
-    },
-    course_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "courses",
-        key: "id",
-      },
-    },
-    schedule_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      foreignKey: true,
-      references: {
-        model: "schedules",
-        key: "id",
-      },
-    },
-    acceptDate: DataTypes.DATE,
-    isPresent: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'finishedcourse',
-  });
+    {
+      sequelize,
+      modelName: "finishedcourse",
+    }
+  );
   return finishedcourse;
 };

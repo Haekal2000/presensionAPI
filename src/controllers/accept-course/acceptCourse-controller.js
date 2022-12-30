@@ -2,6 +2,7 @@ import { decrypt } from "../../utils/encryptor";
 import bcrypt from "bcrypt";
 import model from "../../db/models";
 import randomstring from "randomstring";
+import { Sequelize } from "sequelize";
 
 export const AcceptCourse = (req, res, next) => {
   const {
@@ -13,6 +14,7 @@ export const AcceptCourse = (req, res, next) => {
     course_id,
   } = req.body;
 
+  const Op = Sequelize.Op;
   const decryptedToken = decrypt(course_code);
 
   if (!decryptedToken) {
@@ -29,11 +31,17 @@ export const AcceptCourse = (req, res, next) => {
         exclude: ["finishedcourseId"],
       },
       where: {
+        student_id: student_id,
         course_id: course_id,
         isPresent: true,
+        acceptDate: {
+          [Op.gt]: new Date().setHours(0, 0, 0, 0),
+          [Op.lt]: new Date(),
+        },
       },
     })
     .then((item) => {
+      console.log("item: ", item);
       if (item) {
         res
           .status(500)
@@ -82,7 +90,6 @@ export const AcceptCourse = (req, res, next) => {
             }
           })
           .catch((err) => {
-            console.log("err: ", err);
             res.status(500).json({ status: 500, message: err });
           });
       }

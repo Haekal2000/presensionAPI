@@ -16,7 +16,7 @@ export const GetStudentSchedules = (req, res, next) => {
           attributes: ["name", "department_id"],
         },
         {
-          attributes: ["isPresent"],
+          attributes: ["isPresent", "isDone"],
           model: model.finishedcourse,
           as: "finishedcourse",
         },
