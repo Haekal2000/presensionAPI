@@ -19,7 +19,6 @@ const getStudentData = async (nrpId) => {
     delete studentData.id;
 
     const fixedData = { ...studentData, departmentName: name };
-
     return fixedData;
   } catch {
     return null;
