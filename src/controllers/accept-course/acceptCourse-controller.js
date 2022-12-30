@@ -5,7 +5,7 @@ import randomstring from "randomstring";
 
 export const AcceptCourse = (req, res, next) => {
   const {
-    token,
+    course_code,
     student_id,
     lecturer_nik,
     isPresent,
@@ -13,7 +13,7 @@ export const AcceptCourse = (req, res, next) => {
     course_id,
   } = req.body;
 
-  const decryptedToken = decrypt(token);
+  const decryptedToken = decrypt(course_code);
 
   if (!decryptedToken) {
     res.status(500).json({
