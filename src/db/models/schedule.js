@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { course, lecturer, academicperiod } = models;
+      const { course, lecturer, academicperiod, finishedcourse } = models;
 
       schedule.belongsTo(course, {
         foreignKey: "course_id",
@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "academic_period_id",
         as: "academicperiod",
       });
+      schedule.hasOne(finishedcourse, {as: "finishedcourse",  foreignKey: "schedule_id"});
     }
   }
   schedule.init(
@@ -57,6 +58,8 @@ module.exports = (sequelize, DataTypes) => {
       day: DataTypes.STRING,
       hours: DataTypes.STRING,
       room: DataTypes.STRING,
+      method: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
     {
       sequelize,

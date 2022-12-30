@@ -129,6 +129,46 @@ INSERT INTO `faculties` VALUES ('10ef5262-22cb-4500-b224-a35d5b5dd403','Teknolog
 UNLOCK TABLES;
 
 --
+-- Table structure for table `finishedcourses`
+--
+
+DROP TABLE IF EXISTS `finishedcourses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `finishedcourses` (
+  `id` varchar(255) NOT NULL,
+  `student_id` varchar(255) DEFAULT NULL,
+  `lecturer_nik` varchar(255) DEFAULT NULL,
+  `course_id` varchar(255) DEFAULT NULL,
+  `acceptDate` datetime DEFAULT NULL,
+  `isPresent` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `schedule_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_id` (`student_id`),
+  KEY `lecturer_nik` (`lecturer_nik`),
+  KEY `course_id` (`course_id`),
+  KEY `schedule_id` (`schedule_id`),
+  CONSTRAINT `finishedcourses_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  CONSTRAINT `finishedcourses_ibfk_2` FOREIGN KEY (`lecturer_nik`) REFERENCES `lecturers` (`nik`),
+  CONSTRAINT `finishedcourses_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  CONSTRAINT `finishedcourses_ibfk_4` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`),
+  CONSTRAINT `finishedcourses_schedule_id_foreign_idx` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `finishedcourses`
+--
+
+LOCK TABLES `finishedcourses` WRITE;
+/*!40000 ALTER TABLE `finishedcourses` DISABLE KEYS */;
+INSERT INTO `finishedcourses` VALUES ('AQkMr','1973013','710003','IN210','2022-12-27 10:20:49',1,'2022-12-30 03:31:36','2022-12-30 03:31:36','e027878e-22c0-4847-a979-5517a2df5314');
+/*!40000 ALTER TABLE `finishedcourses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `lecturers`
 --
 
@@ -207,6 +247,8 @@ CREATE TABLE `schedules` (
   `day` varchar(255) DEFAULT NULL,
   `hours` varchar(255) DEFAULT NULL,
   `room` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `method` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   KEY `lecturer_nik` (`lecturer_nik`),
@@ -223,7 +265,7 @@ CREATE TABLE `schedules` (
 
 LOCK TABLES `schedules` WRITE;
 /*!40000 ALTER TABLE `schedules` DISABLE KEYS */;
-INSERT INTO `schedules` VALUES ('025d0c9c-2ea6-4b77-883f-36dfe47555b9','IN211','710003','b68be57f-c28c-4b46-867a-d92714465eab','2022-10-14 07:34:00','2022-10-14 07:34:00','Senin','01.00 - 15.00','Lab Komputer'),('18f209bb-b38d-4d44-9f26-fc7a726eba9e','IN212','710004','c3041736-4975-4579-af04-280e78c5c8f3','2022-10-14 07:34:00','2022-10-14 07:34:00','Jumat','10.00 - 12.00','Lab Komputer'),('682b14ab-c53e-4095-82e6-531780784de6','IN214','710096','ef3a2809-61b1-4750-b11e-91456d4d11ca','2022-10-14 07:34:00','2022-10-14 07:34:00','Rabu','08.00 - 10.00','Lab Komputer'),('8e86458c-37b4-45e0-844e-610d088f28aa','IN224','720211','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Jumat','10.00 - 12.00','Lab Komputer'),('a04cb7f8-0961-47b0-bacc-9143b2a95f22','IN213','710071','d85d7d97-c26b-4fcc-bead-6916cf7a039f','2022-10-14 07:34:00','2022-10-14 07:34:00','Rabu','15.00 - 17.00','Lab Komputer'),('b1d4c866-5f5b-4f2a-ae43-ab9773c00e2f','IN216','720001','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Kamis','15.00 - 17.00','Lab Komputer'),('c84a21ec-43dd-4277-aaaf-d86b1ce7a542','IN220','730009','28104643-57bb-466b-9a68-091f3322c450','2022-11-07 06:36:12','2022-11-07 06:36:12','Senin','08.00 - 10.00','Lab Komputer'),('e027878e-22c0-4847-a979-5517a2df5314','IN210','710001','28104643-57bb-466b-9a68-091f3322c450','2022-10-14 07:34:00','2022-10-14 07:34:00','Selasa','08.00 - 10.00','Lab Jaringan Komputer');
+INSERT INTO `schedules` VALUES ('a04cb7f8-0961-47b0-bacc-9143b2a95f22','IN213','710071','d85d7d97-c26b-4fcc-bead-6916cf7a039f','2022-12-26 10:45:17','2022-12-26 10:45:17','Rabu','15.00 - 17.00','Lab Komputer','$2a$06$jGO7wXyweoT4okeR8AntTejIirQ1ioreBNywiDlG9zuGgQsvDafRW','teori-praktikum'),('e027878e-22c0-4847-a979-5517a2df5314','IN210','710001','28104643-57bb-466b-9a68-091f3322c450','2022-12-26 10:45:17','2022-12-26 10:45:17','Selasa','08.00 - 10.00','Lab Jaringan Komputer','$2a$06$3jtunXq5jzOeBJD/.bShe.hRqq2iu55vyMQNP7GAMZdFlYttrVHpK','teori-praktikum');
 /*!40000 ALTER TABLE `schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +289,7 @@ CREATE TABLE `SequelizeMeta` (
 
 LOCK TABLES `SequelizeMeta` WRITE;
 /*!40000 ALTER TABLE `SequelizeMeta` DISABLE KEYS */;
-INSERT INTO `SequelizeMeta` VALUES ('20221007021617-create-student.js'),('20221010115754-create-faculty.js'),('20221010122328-create-student.js'),('20221010122924-create-department.js'),('20221010123212-create-faculty.js'),('20221010123328-create-department.js'),('20221010124350-create-faculty.js'),('20221010131349-create-faculty.js'),('20221010131434-create-department.js'),('20221010131527-create-department.js'),('20221010131623-create-student.js'),('20221011012414-create-course.js'),('20221011073005-create-student.js'),('20221013063039-create-role.js'),('20221013065203-create-academicperiod.js'),('20221013070338-create-lecturer.js'),('20221013072714-create-lecturer.js'),('20221013090805-create-schedule.js'),('20221013121906-addcolumncourse.js'),('20221013123156-deletecolumncourse.js'),('20221013123241-deletecolumncourse2.js'),('20221013123611-deletecolumncourse3.js'),('20221013123905-addcolumnschedules.js'),('20221014072506-addcolumnschedules1.js'),('20221014073138-addcolumnschedules2.js'),('20221014080501-addcolumnschedules3.js'),('20221109021950-change-academic-column.js');
+INSERT INTO `SequelizeMeta` VALUES ('20221007021617-create-student.js'),('20221010115754-create-faculty.js'),('20221010122328-create-student.js'),('20221010122924-create-department.js'),('20221010123212-create-faculty.js'),('20221010123328-create-department.js'),('20221010124350-create-faculty.js'),('20221010131349-create-faculty.js'),('20221010131434-create-department.js'),('20221010131527-create-department.js'),('20221010131623-create-student.js'),('20221011012414-create-course.js'),('20221011073005-create-student.js'),('20221013063039-create-role.js'),('20221013065203-create-academicperiod.js'),('20221013070338-create-lecturer.js'),('20221013072714-create-lecturer.js'),('20221013090805-create-schedule.js'),('20221013121906-addcolumncourse.js'),('20221013123156-deletecolumncourse.js'),('20221013123241-deletecolumncourse2.js'),('20221013123611-deletecolumncourse3.js'),('20221013123905-addcolumnschedules.js'),('20221014072506-addcolumnschedules1.js'),('20221014073138-addcolumnschedules2.js'),('20221014080501-addcolumnschedules3.js'),('20221109021950-change-academic-column.js'),('20221226092929-add-schedule-password.js'),('20221226100912-remove-schedule-method-column.js'),('20221226101052-add-schedule-method-column.js'),('20221227080515-create-finishedcourse.js'),('20221227122050-add-finishedSchedule-scheduleid.js'),('20221227123540-remove-finishedSchedule-scheduleid.js'),('20221227123628-add-finishedcourse-scheduleid.js'),('20221227133614-change-finishedcourse-scheduleid.js');
 /*!40000 ALTER TABLE `SequelizeMeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +309,7 @@ CREATE TABLE `students` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `academic_period_id` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `department_id` (`department_id`),
   KEY `academic_period_id` (`academic_period_id`),
@@ -281,7 +324,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('1973010','haekal','$2b$10$MaZ0QIFdnfKnzLLKBmh3He.BseNUwqM4MaB6DN2xQJqLi/XHfLERW','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-10-24 04:41:56','2022-10-24 04:41:56','28104643-57bb-466b-9a68-091f3322c450');
+INSERT INTO `students` VALUES ('1973010','haekal mahendra','$2b$10$Vepc.YgRdd8q5RDu3ytaJ.aMx69Zfn8cfnNeKxlzqiz8szAbfbBmG','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-12-27 07:12:57','2022-12-27 07:12:57','28104643-57bb-466b-9a68-091f3322c450','haekal762013@gmail.com'),('1973013','renaldy kharisma','$2b$10$7gmhtBunJsFHZ45ml0J.3OZM7TS08OaOsFx6v71FjDuI2cFNtDjua','46c0d3ec-0063-4f26-8f14-6be3bbe99f07','https://i.ibb.co/QNXQM3F/user.png','2022-12-23 07:14:38','2022-12-23 07:14:38','28104643-57bb-466b-9a68-091f3322c450','renaldykhrsm8@gmail.com');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-14 18:32:44
+-- Dump completed on 2022-12-30 10:42:35

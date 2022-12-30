@@ -11,7 +11,7 @@ const getScheduleData = (nik) => {
         {
           model: model.course,
           as: "course",
-          attributes: ["name"],
+          attributes: ["name", "department_id"],
         },
       ],
       raw: false,
@@ -32,15 +32,14 @@ export const GetLectureSchedules = async (req, res, next) => {
     if (!scheduleData)
       res
         .status(400)
-        .json({ status: 400, message: "data not found", data: [], token: "" });
+        .json({ status: 400, message: "data not found", data: [] });
 
     res.status(200).json({
       status: 200,
       message: "success!",
       data: scheduleData,
-      token: "",
     });
   } catch (Err) {
-    res.status(500).json({ status: 500, message: Err, token: "" });
+    res.status(500).json({ status: 500, message: Err});
   }
 };
