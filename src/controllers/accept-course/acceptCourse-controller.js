@@ -8,9 +8,9 @@ export const AcceptCourse = (req, res, next) => {
     token,
     student_id,
     lecturer_nik,
-    acceptDate,
     isPresent,
     schedule_id,
+    course_id,
   } = req.body;
 
   const decryptedToken = decrypt(token);
@@ -29,6 +29,7 @@ export const AcceptCourse = (req, res, next) => {
         exclude: ["finishedcourseId"],
       },
       where: {
+        course_id: course_id,
         isPresent: true,
       },
     })
@@ -58,10 +59,10 @@ export const AcceptCourse = (req, res, next) => {
                     charset: "alphabetic",
                   }),
                   course_id: decryptedToken,
+                  acceptDate: new Date(),
                   ...{
                     student_id,
                     lecturer_nik,
-                    acceptDate,
                     isPresent,
                     schedule_id,
                   },

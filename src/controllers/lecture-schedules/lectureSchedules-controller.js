@@ -4,7 +4,7 @@ const getScheduleData = (nik) => {
   const data = model.schedule
     .findAll({
       attributes: {
-        exclude: ["academicperiodId", "courseId", "lecturerId"],
+        exclude: ["academicperiodId", "courseId", "lecturerId", "password"],
       },
       where: { lecturer_nik: nik },
       include: [
