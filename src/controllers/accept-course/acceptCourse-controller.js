@@ -25,10 +25,10 @@ export const AcceptCourse = (req, res, next) => {
     });
   }
 
-  model.finishedcourse
+  model.studentrecord
     .findOne({
       attributes: {
-        exclude: ["finishedcourseId"],
+        exclude: ["studentrecordId"],
       },
       where: {
         student_id: student_id,
@@ -41,7 +41,6 @@ export const AcceptCourse = (req, res, next) => {
       },
     })
     .then((item) => {
-      console.log("item: ", item);
       if (item) {
         res
           .status(500)
@@ -60,7 +59,7 @@ export const AcceptCourse = (req, res, next) => {
               count === 1 &&
               bcrypt.compareSync(decryptedToken, rows[0]["password"]) === true
             ) {
-              model.finishedcourse
+              model.studentrecord
                 .create({
                   id: randomstring.generate({
                     length: 5,

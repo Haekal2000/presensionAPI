@@ -1,7 +1,8 @@
 import model from "../../db/models";
 
 export const GetStudentSchedules = (req, res, next) => {
-  const { department_id, academic_period_id } = req.query;
+  const { department_id, academic_period_id, student_id } = req.query;
+  console.log('student_id: ', student_id);
   model.schedule
     .findAll({
       attributes: {
@@ -12,13 +13,18 @@ export const GetStudentSchedules = (req, res, next) => {
         {
           model: model.course,
           as: "course",
-          where: { department_id: department_id },
           attributes: ["name", "department_id"],
+          where: { department_id: department_id },
         },
         {
-          attributes: ["isPresent", "isDone"],
-          model: model.finishedcourse,
-          as: "finishedcourse",
+          model: model.studentrecord,
+          as: "studentrecord",
+          attributes: ["isPresent"],
+        },
+        {
+          model: model.schedulerecord,
+          as: "schedulerecord",
+          attributes: ["isComplete"],
         },
       ],
       raw: false,
@@ -31,6 +37,7 @@ export const GetStudentSchedules = (req, res, next) => {
       });
     })
     .catch((err) => {
+      console.log('err: ', err);
       res.status(500).json({ status: 500, message: err });
     });
 };

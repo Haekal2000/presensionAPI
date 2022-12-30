@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { department, academicperiod, finishedcourse } = models;
+      const { department, academicperiod, finishedcourse, studentrecord } = models;
       student.belongsTo(department, {
         foreignKey: "department_id",
         as: "department",
@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       student.hasOne(finishedcourse, {
         as: "finishedcourse",
       });
+      student.hasOne(studentrecord, {as: "studentrecord"})
     }
   }
   student.init(

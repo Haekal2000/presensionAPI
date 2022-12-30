@@ -46,7 +46,7 @@ router.post("/add-schedule", (req, res, next) => {
 router.delete("/delete-finishedcourse", (req, res, next) => {
   DeleteFinishedCourse(req, res, next);
 });
-router.put("/closing-course", (req, res, next) => {
+router.post("/closing-course", (req, res, next) => {
   PutClosingCourse(req, res, next);
 });
 router.get("/lecturer-session", (req, res, next) => {
