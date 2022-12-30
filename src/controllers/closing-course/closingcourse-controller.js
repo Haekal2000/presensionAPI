@@ -16,7 +16,6 @@ export const PutClosingCourse = (req, res, next) => {
         .json({ status: 200, message: "Finished Course already updated!" });
     })
     .catch((err) => {
-      console.log('err: ', err);
       res.status(500).json({ status: 500, message: err });
     });
 };

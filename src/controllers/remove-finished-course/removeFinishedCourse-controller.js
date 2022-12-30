@@ -10,7 +10,6 @@ export const DeleteFinishedCourse = (req, res, next) => {
       });
     })
     .catch((err) => {
-        console.log('err: ', err);
       res.status(500).json({
         status: 500,
         message: err,

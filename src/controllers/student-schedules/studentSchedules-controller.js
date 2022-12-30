@@ -2,7 +2,6 @@ import model from "../../db/models";
 
 export const GetStudentSchedules = (req, res, next) => {
   const { department_id, academic_period_id, student_id } = req.query;
-  console.log('student_id: ', student_id);
   model.schedule
     .findAll({
       attributes: {
@@ -37,7 +36,6 @@ export const GetStudentSchedules = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log('err: ', err);
       res.status(500).json({ status: 500, message: err });
     });
 };
