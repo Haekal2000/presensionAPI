@@ -9,9 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { schedule, finishedcourse, schedulerecord } = models;
-      course.hasMany(schedule, {as: "schedule"});
-      course.hasOne(finishedcourse, {as: "finishedcourse"});
+      const { schedule, schedulerecord } = models;
+      course.hasMany(schedule, {as: "schedule", foreignKey: "schedule_id"});
       course.hasOne(schedulerecord, {as: "schedulerecord", foreignKey: "course_id"});
     }
   }

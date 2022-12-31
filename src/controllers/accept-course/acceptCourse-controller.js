@@ -50,7 +50,7 @@ export const AcceptCourse = (req, res, next) => {
           .findAndCountAll({
             raw: true,
             attributes: {
-              exclude: ["academicperiodId", "courseId", "lecturerId"],
+              exclude: ["academicperiodId", "courseId", "lecturerId", "schedule_id"],
             },
             where: { course_id: decryptedToken },
           })

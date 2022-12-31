@@ -9,8 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.changeColumn('finishedcourses', 'isPresent', { type: Sequelize.BOOLEAN, defaultValue: false });
-    await queryInterface.changeColumn('finishedcourses', 'isDone', { type: Sequelize.BOOLEAN, defaultValue: false });
+    await queryInterface.removeColumn("studentrecords", "schedulerecord_id");
   },
 
   async down (queryInterface, Sequelize) {
@@ -20,7 +19,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('finishedcourses', 'isPresent');
-    await queryInterface.removeColumn('finishedcourses', 'isDone');
+    await queryInterface.removeColumn("studentrecords", "schedulerecord_id");
   }
 };

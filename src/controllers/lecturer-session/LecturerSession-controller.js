@@ -1,21 +1,23 @@
 import Model from "../../db/models";
 
 export const GetLecturerSession = (req, res, next) => {
-  const { course_id, lecturer_nik } = req.query;
+  const { lecturer_nik } = req.query;
   Model.schedule
     .findAll({
-    //   attributes: { exclude: ["finishedcourseId"] },
+      attributes: {exclude: ["schedule_id", "password"]},
       where: {
-        course_id: course_id,
         lecturer_nik: lecturer_nik,
-        isPresent: true,
-        isDone: true,
       },
       include: [
         {
-          model: Model.course,
-          as: "course",
-          attributes: ["name", "department_id"],
+          model: Model.studentrecord,
+          as: "studentrecord",
+          attributes: ["id", "isPresent"],
+        },
+        {
+          model: Model.schedulerecord,
+          as: "schedulerecord",
+          attributes: ["id", "isComplete"],
         },
       ],
     })

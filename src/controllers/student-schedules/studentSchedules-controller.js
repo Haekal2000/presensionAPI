@@ -5,7 +5,10 @@ export const GetStudentSchedules = (req, res, next) => {
   model.schedule
     .findAll({
       attributes: {
-        exclude: ["academicperiodId", "courseId", "lecturerId", "password"],
+        exclude: [
+          "password",
+          "schedule_id"
+        ],
       },
       where: { academic_period_id: academic_period_id },
       include: [
@@ -18,12 +21,8 @@ export const GetStudentSchedules = (req, res, next) => {
         {
           model: model.studentrecord,
           as: "studentrecord",
+          where: {student_id: student_id},
           attributes: ["isPresent"],
-        },
-        {
-          model: model.schedulerecord,
-          as: "schedulerecord",
-          attributes: ["isComplete"],
         },
       ],
       raw: false,

@@ -18,9 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "course_id",
         as: "course",
       });
+      studentrecord.belongsTo(lecturer, {
+        foreignKey: "lecturer_nik",
+        as: "lecturer"
+      });
       studentrecord.belongsTo(schedule, {
         foreignKey: "schedule_id",
-        as: "schedule",
+        as: "schedule"
       });
     }
   }

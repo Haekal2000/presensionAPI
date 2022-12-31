@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       const {schedule, student} = models;
-      academicperiod.hasMany(schedule);
+      academicperiod.hasMany(schedule, { foreignKey: "schedule_id", as: "schedule" });
       academicperiod.hasMany(student);
     }
   }

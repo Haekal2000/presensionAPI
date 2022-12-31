@@ -1,12 +1,12 @@
 import model from "../../db/models";
 
-const getScheduleData = (nik) => {
+const getScheduleData = (lecturer_nik) => {
   const data = model.schedule
     .findAll({
       attributes: {
-        exclude: ["academicperiodId", "courseId", "lecturerId", "password"],
+        exclude: ["schedule_id"]
       },
-      where: { lecturer_nik: nik },
+      where: { lecturer_nik: lecturer_nik },
       include: [
         {
           model: model.course,
@@ -26,9 +26,9 @@ const getScheduleData = (nik) => {
 };
 
 export const GetLectureSchedules = async (req, res, next) => {
-  let { nik } = req.query;
+  let { lecturer_nik } = req.query;
   try {
-    const scheduleData = await getScheduleData(nik);
+    const scheduleData = await getScheduleData(lecturer_nik);
     if (!scheduleData)
       res
         .status(400)

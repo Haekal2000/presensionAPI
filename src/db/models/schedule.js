@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         course,
         lecturer,
         academicperiod,
-        finishedcourse,
         studentrecord,
         schedulerecord,
       } = models;
@@ -30,13 +29,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "academic_period_id",
         as: "academicperiod",
       });
-      schedule.hasOne(finishedcourse, {
-        as: "finishedcourse",
-        foreignKey: "schedule_id",
-      });
-      schedule.hasOne(studentrecord, {
+      schedule.hasMany(studentrecord, {
         as: "studentrecord",
-        foreignKey: "schedule_id",
+        foreignKey: "schedule_id"
       });
       schedule.hasOne(schedulerecord, {
         as: "schedulerecord",
