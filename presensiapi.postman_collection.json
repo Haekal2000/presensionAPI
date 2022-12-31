@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "4e6504a1-376c-46ad-a127-425975400586",
+		"name": "presensiapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2526289"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/create-student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nrpId\": \"1973010\",\n    \"name\": \"haekal mahendra\",\n    \"password\": \"12345\",\n    \"department_id\": \"46c0d3ec-0063-4f26-8f14-6be3bbe99f07\",\n    \"academic_period_id\": \"28104643-57bb-466b-9a68-091f3322c450\",\n    \"email\": \"haekal762013@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/create-student",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create-student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nrpId\": \"1973013\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/lecture-schedule?nik=710001",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWNyeXB0VXNlcm5hbWUiOiJwMHFjMjZ1bTV2c3AwcWMyNnVtNXZzcDBxYzI2dW01dnNwMHFjMjZ1bTV2c3AwcWMyNnVtNXZzcDBxYzI2dW01dnNwMHFjMjZ1bTV2cyIsImlhdCI6MTY3MTYwMzQyOX0.SHfZCv0aaPFeeYK-9gw6BDQg10UlOjrGLMEKOXzChAE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/lecture-schedule?lecturer_nik=710003",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lecture-schedule"
+					],
+					"query": [
+						{
+							"key": "lecturer_nik",
+							"value": "710003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/send-email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"course_id\": \"IN212\",\n    \"academic_period_id\": \"28104643-57bb-466b-9a68-091f3322c450\",\n    \"department_id\": \"46c0d3ec-0063-4f26-8f14-6be3bbe99f07\",\n    \"courseName\": \"Web Dasar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/send-email",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"send-email"
+					],
+					"query": [
+						{
+							"key": "schedule_id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/login-lecture",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nik\": \"710001\",\n    \"password\": \"admin12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login-lecture",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login-lecture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/accept-course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"course_code\": \"1cb3139a0032\",\n    \"student_id\": \"1973013\",\n    \"lecturer_nik\": \"710003\",\n    \"schedule_id\": \"YIzVZ\",\n    \"isPresent\": true,\n    \"isDone\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/accept-course",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accept-course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/student-schedule?department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07&academic_period_id=28104643-57bb-466b-9a68-091f3322c450",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWNyeXB0VXNlcm5hbWUiOiJpcm1jeGxvOGpuZWlybWN4bG84am5laXJtY3hsbzhqbmVpcm1jeGxvOGpuZWlybWN4bG84am5laXJtY3hsbzhqbmVpcm1jeGxvOGpuZWlybWN4bG84am5lIiwiaWF0IjoxNjcyMTM2MzA5fQ.Js5tyf-JQRIVC-No7gc0uUruJgxr2Brtq-L3d_v1w7E",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/student-schedule?department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07&academic_period_id=28104643-57bb-466b-9a68-091f3322c450&student_id=1973010",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student-schedule"
+					],
+					"query": [
+						{
+							"key": "department_id",
+							"value": "46c0d3ec-0063-4f26-8f14-6be3bbe99f07"
+						},
+						{
+							"key": "academic_period_id",
+							"value": "28104643-57bb-466b-9a68-091f3322c450"
+						},
+						{
+							"key": "student_id",
+							"value": "1973010"
+						},
+						{
+							"key": "course_id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/add-schedule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"course_id\": \"IN213\",\n    \"lecturer_nik\": \"IN212\",\n    \"academic_period_id\": \"d85d7d97-c26b-4fcc-bead-6916cf7a039f\",\n    \"day\": \"Rabu\",\n    \"hours\": \"15.00 - 17.00\",\n    \"room\": \"Lab Komputer\",\n    \"method\": \"teori\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/add-schedule",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"add-schedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/delete-finishedcourse",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/delete-finishedcourse",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"delete-finishedcourse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/closing-course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lecturer_nik\": \"710071\",\n    \"course_id\": \"IN213\",\n    \"schedule_id\": \"YIzVZ\",\n    \"isComplete\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/closing-course",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"closing-course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/lecturer-session?course_id=IN212",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/lecturer-session?lecturer_nik=710003",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lecturer-session"
+					],
+					"query": [
+						{
+							"key": "lecturer_nik",
+							"value": "710003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/course-history?lecturer_nik=710003&course_id=IN212&department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/course-history?lecturer_nik=710003&course_id=IN212&department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"course-history"
+					],
+					"query": [
+						{
+							"key": "lecturer_nik",
+							"value": "710003"
+						},
+						{
+							"key": "course_id",
+							"value": "IN212"
+						},
+						{
+							"key": "department_id",
+							"value": "46c0d3ec-0063-4f26-8f14-6be3bbe99f07"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
