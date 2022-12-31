@@ -11,7 +11,6 @@ export const AcceptCourse = (req, res, next) => {
     lecturer_nik,
     isPresent,
     schedule_id,
-    course_id,
   } = req.body;
 
   const Op = Sequelize.Op;
@@ -32,7 +31,7 @@ export const AcceptCourse = (req, res, next) => {
       },
       where: {
         student_id: student_id,
-        course_id: course_id,
+        course_id: decryptedToken,
         isPresent: true,
         acceptDate: {
           [Op.gt]: new Date().setHours(0, 0, 0, 0),

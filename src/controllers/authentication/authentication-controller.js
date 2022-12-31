@@ -2,17 +2,18 @@ import model from "../../db/models";
 import { tokenization } from "../../handler/login-handler";
 
 const getStudentData = async (nrpId) => {
+  
   try {
     const studentData = await model.student.findOne({
       raw: true,
-      attributes: { exclude: ["password", "departmentId", "academicperiodId"] },
+      attributes: { exclude: ["password", "departmentId", "academicperiodId", "student_id"] },
       where: { id: nrpId },
     });
 
     const departmentData = await model.department.findOne({
       raw: true,
       where: { id: studentData.department_id },
-    });
+    })
 
     const { name } = departmentData;
     studentData["nrpId"] = studentData["id"];
@@ -30,7 +31,7 @@ const getLectureData = async (_nik) => {
     const lectureData = await model.lecturer.findOne({
       raw: true,
       attributes: {
-        exclude: ["id", "departmentId", "roleId"],
+        exclude: ["id", "departmentId", "lecturer_nik"],
       },
       where: { nik: _nik },
     });

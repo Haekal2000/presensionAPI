@@ -9,11 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { role, department, schedule, schedulerecord } = models;
-      lecturer.belongsTo(role, {
-        foreignKey: "role_id",
-        as: "role",
-      });
+      const { department, schedule, schedulerecord } = models;
       lecturer.belongsTo(department, {
         foreignKey: "department_id",
         as: "department",
@@ -35,15 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: true,
         references: {
           model: "departments",
-          key: "id",
-        },
-      },
-      role_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        foreignKey: true,
-        references: {
-          model: "roles",
           key: "id",
         },
       },

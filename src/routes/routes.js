@@ -8,12 +8,12 @@ import {
 } from "../controllers/authentication/authentication-controller";
 import { getCourse } from "../controllers/course/course-controller";
 import { GetLectureSchedules } from "../controllers/lecture-schedules/lectureSchedules-controller";
-import { DeleteFinishedCourse } from "../controllers/remove-finished-course/removeFinishedCourse-controller";
 import { sendMail } from "../controllers/sendMail/sendMail-controller";
 import { GetStudentSchedules } from "../controllers/student-schedules/studentSchedules-controller";
 import { SecureRoutes } from "../middlewares/secure-routes";
 import { PutClosingCourse } from "../controllers/closing-course/closingcourse-controller";
 import { GetLecturerSession } from "../controllers/lecturer-session/LecturerSession-controller";
+import { GetCourseHistory } from "../controllers/course-history/courseHistory-controller";
 
 const router = Router();
 
@@ -43,13 +43,13 @@ router.post("/accept-course", (req, res, next) => {
 router.post("/add-schedule", (req, res, next) => {
   PostSchedule(req, res, next);
 });
-router.delete("/delete-finishedcourse", (req, res, next) => {
-  DeleteFinishedCourse(req, res, next);
-});
 router.post("/closing-course", (req, res, next) => {
   PutClosingCourse(req, res, next);
 });
 router.get("/lecturer-session", (req, res, next) => {
   GetLecturerSession(req, res, next);
-})
+});
+router.get("/course-history", (req, res, next) => {
+  GetCourseHistory(req, res, next);
+});
 export default router;

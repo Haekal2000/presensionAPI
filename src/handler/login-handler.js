@@ -20,7 +20,7 @@ export const checkValidationLecture = async (param) => {
   const { count } = await model.lecturer.findAndCountAll({
     raw: true,
     attributes: {
-      exclude: ["id", "departmentId", "roleId"],
+      exclude: ["id", "departmentId", "lecturer_nik"],
     },
     where: { nik: nikLecture },
   });
