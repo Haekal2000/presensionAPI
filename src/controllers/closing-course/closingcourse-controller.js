@@ -32,7 +32,7 @@ export const PutClosingCourse = (req, res, next) => {
           .then(() => {
             res.status(200).json({
               status: 200,
-              message: "Finished Course already updated!",
+              message: "Course Successfully Closed!",
             });
           })
           .catch((err) => {
