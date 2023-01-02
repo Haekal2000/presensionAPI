@@ -25,7 +25,7 @@ const getScheduleData = (lecturer_nik) => {
   return data;
 };
 
-export const GetLectureSchedules = async (req, res, next) => {
+export const GetLecturerSchedules = async (req, res, next) => {
   let { lecturer_nik } = req.query;
   try {
     const scheduleData = await getScheduleData(lecturer_nik);
