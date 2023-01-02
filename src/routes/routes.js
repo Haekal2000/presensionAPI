@@ -39,7 +39,7 @@ router.post("/add-schedule", (req, res, next) => {
   PostSchedule(req, res, next);
 });
 router.post("/closing-course", (req, res, next) => {
-  PutClosingCourse(req, res, next);
+  PostClosingCourse(req, res, next);
 });
 router.get("/lecturer-session", (req, res, next) => {
   GetLecturerSession(req, res, next);

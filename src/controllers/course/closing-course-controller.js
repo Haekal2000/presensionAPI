@@ -2,7 +2,7 @@ import model from "../../db/models";
 import randomstring from "randomstring";
 import { Sequelize } from "sequelize";
 
-export const PutClosingCourse = (req, res, next) => {
+export const PostClosingCourse = (req, res, next) => {
   const { body } = req;
   const Op = Sequelize.Op;
   model.schedulerecord
