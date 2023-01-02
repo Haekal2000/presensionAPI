@@ -17,7 +17,7 @@ import { sendMail } from "../controllers/sendMail/send-mail-controller";
 const router = Router();
 
 router.post("/create-student", postCreateStudent);
-router.post("/login", async (req, res, next) => {
+router.post("/login-student", async (req, res, next) => {
   await postLoginStudent(req, res, next);
 });
 router.post("/login-lecture", async (req, res, next) => {
