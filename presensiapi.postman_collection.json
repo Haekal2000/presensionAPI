@@ -34,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/login",
+			"name": "localhost:3000/login-student",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -48,20 +48,20 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/login",
+					"raw": "localhost:3000/login-student",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"login"
+						"login-student"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "localhost:3000/lecture-schedule?nik=710001",
+			"name": "localhost:3000/lecturer-schedule?nik=710001",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -72,13 +72,13 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:3000/lecture-schedule?lecturer_nik=710003",
+					"raw": "localhost:3000/lecturer-schedule?lecturer_nik=710003",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"lecture-schedule"
+						"lecturer-schedule"
 					],
 					"query": [
 						{
@@ -190,7 +190,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:3000/student-schedule?department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07&academic_period_id=28104643-57bb-466b-9a68-091f3322c450&student_id=1973010",
+					"raw": "localhost:3000/student-schedule?department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07&academic_period_id=28104643-57bb-466b-9a68-091f3322c450&student_id=1973013",
 					"host": [
 						"localhost"
 					],
@@ -209,11 +209,11 @@
 						},
 						{
 							"key": "student_id",
-							"value": "1973010"
+							"value": "1973013"
 						},
 						{
 							"key": "course_id",
-							"value": null,
+							"value": "",
 							"disabled": true
 						}
 					]
@@ -249,31 +249,13 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/delete-finishedcourse",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/delete-finishedcourse",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"delete-finishedcourse"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:3000/closing-course",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"lecturer_nik\": \"710071\",\n    \"course_id\": \"IN213\",\n    \"schedule_id\": \"YIzVZ\",\n    \"isComplete\": true\n}",
+					"raw": "{\n    \"lecturer_nik\": \"710003\",\n    \"course_id\": \"IN212\",\n    \"schedule_id\": \"YIzVZ\",\n    \"isComplete\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
