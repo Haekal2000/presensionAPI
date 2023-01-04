@@ -2,7 +2,6 @@ import model from "../../db/models";
 import { tokenization } from "../../handler/login-handler";
 
 const getStudentData = async (nrpId) => {
-  
   try {
     const studentData = await model.student.findOne({
       raw: true,
