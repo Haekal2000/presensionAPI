@@ -5,14 +5,16 @@ const getStudentData = async (nrpId) => {
   try {
     const studentData = await model.student.findOne({
       raw: true,
-      attributes: { exclude: ["password", "departmentId", "academicperiodId", "student_id"] },
+      attributes: {
+        exclude: ["password", "departmentId", "academicperiodId", "student_id"],
+      },
       where: { id: nrpId },
     });
 
     const departmentData = await model.department.findOne({
       raw: true,
       where: { id: studentData.department_id },
-    })
+    });
 
     const { name } = departmentData;
     studentData["nrpId"] = studentData["id"];
@@ -26,19 +28,22 @@ const getStudentData = async (nrpId) => {
 };
 
 const getLectureData = async (_nik) => {
-  try {
-    const lectureData = await model.lecturer.findOne({
+  const lectureData = await model.lecturer
+    .findOne({
       raw: true,
       attributes: {
         exclude: ["id", "departmentId", "lecturer_nik"],
       },
       where: { nik: _nik },
+    })
+    .then((item) => {
+      return Promise.resolve(item);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
     });
 
-    return lectureData;
-  } catch {
-    return null;
-  }
+  return lectureData;
 };
 
 export const postLoginStudent = async (req, res, next) => {
@@ -62,7 +67,7 @@ export const postLoginStudent = async (req, res, next) => {
     } else {
       res.status(400).json({
         status: 400,
-        message: "The nrpid or Password You Entered is Incorrect",
+        message: "The Student nrpid or Password You Entered is Incorrect",
         token: "",
       });
     }
@@ -71,27 +76,32 @@ export const postLoginStudent = async (req, res, next) => {
   }
 };
 
-export const postLoginLecture = async (req, res, next) => {
-  try {
-    let { body } = req;
-    const userToken = await tokenization(body, false);
-    const lectureData = await getLectureData(body.nik);
+export const postLoginLecture = (req, res, next) => {
+  let { body } = req;
 
-    if (userToken && lectureData) {
-      res.status(200).json({
-        status: 200,
-        message: "success",
-        data: { token: userToken, userData: lectureData },
-      });
-    } else if(lectureData) {
+  tokenization(body, false)
+    .then((_token) => {
+      getLectureData(body.nik)
+        .then((item) => {
+          res.status(200).json({
+            status: 200,
+            message: "success",
+            data: { token: _token, userData: item },
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            status: 500,
+            message: err,
+            token: "",
+          });
+        });
+    })
+    .catch(() => {
       res.status(400).json({
         status: 400,
-        message: "data not exist",
+        message: "The Lecture NIK or Password You Entered is Incorrect!",
         token: "",
       });
-    }
-  
-  } catch (Err) {
-    res.status(500).json({ status: 500, message: Err, token: "" });
-  }
+    });
 };

@@ -16,8 +16,8 @@ const checkValidationStudent = async (param) => {
 };
 
 export const checkValidationLecture = async (param) => {
-  const { nik: nikLecture } = param;
-  const { count } = await model.lecturer.findAndCountAll({
+  const { nik: nikLecture, password: inputPass } = param;
+  const { count, rows } = await model.lecturer.findAndCountAll({
     raw: true,
     attributes: {
       exclude: ["id", "departmentId", "lecturer_nik"],
@@ -25,10 +25,7 @@ export const checkValidationLecture = async (param) => {
     where: { nik: nikLecture },
   });
 
-  if (count === 1) {
-    return true;
-  }
-  return false;
+  return !!(count === 1 && inputPass === rows[0]["password"]);
 };
 
 export const tokenization = async (param, isStudent) => {
@@ -67,8 +64,9 @@ export const tokenization = async (param, isStudent) => {
       { decryptUsername },
       "this is test string for jwt"
     );
-    return tokenResult;
+
+    return Promise.resolve(tokenResult);
   } else {
-    return null;
+    return Promise.reject(new Error(""));
   }
 };
