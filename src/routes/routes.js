@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { SecureRoutes } from "../middlewares/secure-routes";
-import {
-  postLoginLecture,
-  postLoginStudent,
-} from "../controllers/authentication/authentication-controller";
+import { postLoginStudent } from "../controllers/authentication/student-authentication-controller";
+import { postLoginLecture } from "../controllers/authentication/lecture-authentication-controller";
 import { PostSchedule } from "../controllers/schedule/add-schedule-controller";
 import postCreateStudent from "../controllers/student/add-student-controller";
 import { AcceptCourse } from "../controllers/course/accept-course-controller";
