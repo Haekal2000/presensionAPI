@@ -18,12 +18,6 @@ export const GetStudentSchedules = (req, res, next) => {
           attributes: ["name", "department_id"],
           where: { department_id: department_id },
         },
-        {
-          model: model.studentrecord,
-          as: "studentrecord",
-          where: {student_id: student_id},
-          attributes: ["isPresent"],
-        },
       ],
       raw: false,
     })
