@@ -7,7 +7,6 @@ import {
 import { PostSchedule } from "../controllers/schedule/add-schedule-controller";
 import postCreateStudent from "../controllers/student/add-student-controller";
 import { AcceptCourse } from "../controllers/course/accept-course-controller";
-import { PutClosingCourse } from "../controllers/course/closing-course-controller";
 import { GetCourseHistory } from "../controllers/course/course-history-controller";
 import { GetLecturerSchedules } from "../controllers/lecturer/lecturer-schedules-controller";
 import { GetLecturerSession } from "../controllers/lecturer/lecturer-session-controller";
