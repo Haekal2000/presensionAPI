@@ -4,7 +4,9 @@ export const GetLecturerSession = (req, res, next) => {
   const { lecturer_nik } = req.query;
   Model.schedule
     .findAll({
-      attributes: {exclude: ["schedule_id", "password", "createdAt", "updatedAt"]},
+      attributes: {
+        exclude: ["schedule_id", "password", "createdAt", "updatedAt"],
+      },
       where: {
         lecturer_nik: lecturer_nik,
       },
@@ -34,9 +36,9 @@ export const GetLecturerSession = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(200).json({
-        status: 200,
-        message: err,
+      res.status(500).json({
+        status: 500,
+        message: err.toString() || "",
       });
     });
 };

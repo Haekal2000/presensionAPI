@@ -6,7 +6,6 @@ export const GetStudentHistory = (req, res, next) => {
     .findAll({
       attributes: {
         exclude: [
-          "studentrecordId",
           "id",
           "schedule_id",
           "lecturer_nik",
@@ -42,7 +41,7 @@ export const GetStudentHistory = (req, res, next) => {
     .catch((err) => {
       res.status(500).json({
         status: 500,
-        message: err,
+        message: err.toString() || "",
         data: {},
       });
     });

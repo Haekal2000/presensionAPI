@@ -40,6 +40,6 @@ export const GetLecturerSchedules = async (req, res, next) => {
       data: scheduleData,
     });
   } catch (Err) {
-    res.status(500).json({ status: 500, message: Err});
+    res.status(500).json({ status: 500, message: Err.toString() || ""});
   }
 };

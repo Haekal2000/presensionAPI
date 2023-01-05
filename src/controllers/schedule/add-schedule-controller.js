@@ -19,6 +19,6 @@ export const PostSchedule = (req, res, next) => {
         .json({ status: 200, message: "Create Schedule Success!" });
     })
     .catch((err) => {
-      res.status(500).json({ status: 500, message: err });
+      res.status(500).json({ status: 500, message: err.toString() || "" });
     });
 };

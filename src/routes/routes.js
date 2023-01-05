@@ -28,26 +28,26 @@ router.get("/student-schedule", SecureRoutes, (req, res, next) => {
 router.get("/lecturer-schedule", SecureRoutes, async (req, res, next) => {
   await GetLecturerSchedules(req, res, next);
 });
-router.post("/send-email", (req, res, next) => {
+router.post("/send-email", SecureRoutes, (req, res, next) => {
   sendMail(req, res, next);
 });
-router.post("/accept-course", (req, res, next) => {
+router.post("/accept-course", SecureRoutes, (req, res, next) => {
   AcceptCourse(req, res, next);
 });
-router.post("/add-schedule", (req, res, next) => {
+router.post("/add-schedule", SecureRoutes, (req, res, next) => {
   PostSchedule(req, res, next);
 });
-router.post("/closing-course", (req, res, next) => {
+router.post("/closing-course", SecureRoutes, (req, res, next) => {
   PostClosingCourse(req, res, next);
 });
-router.get("/lecturer-session", (req, res, next) => {
+router.get("/lecturer-session", SecureRoutes, (req, res, next) => {
   GetLecturerSession(req, res, next);
 });
-router.get("/course-history", (req, res, next) => {
+router.get("/course-history", SecureRoutes, (req, res, next) => {
   GetCourseHistory(req, res, next);
 });
-router.get("/student-course-history", (req, res, next) => {
+router.get("/student-course-history", SecureRoutes, (req, res, next) => {
   GetStudentHistory(req, res, next);
-})
+});
 
 export default router;
