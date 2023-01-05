@@ -17,6 +17,13 @@ export const GetCourseHistory = (req, res, next) => {
           model: Model.studentrecord,
           as: "studentrecord",
           attributes: ["id", "isPresent"],
+          include: [
+            {
+              model: Model.student,
+              as: "student",
+              attributes: ["id", "name"]
+            }
+          ]
         },
         {
           model: Model.schedulerecord,
