@@ -4,11 +4,16 @@ export const GetLecturerSession = (req, res, next) => {
   const { lecturer_nik } = req.query;
   Model.schedule
     .findAll({
-      attributes: {exclude: ["schedule_id", "password"]},
+      attributes: {exclude: ["schedule_id", "password", "createdAt", "updatedAt"]},
       where: {
         lecturer_nik: lecturer_nik,
       },
       include: [
+        {
+          model: Model.course,
+          as: "course",
+          attributes: ["name"],
+        },
         {
           model: Model.studentrecord,
           as: "studentrecord",
@@ -17,7 +22,7 @@ export const GetLecturerSession = (req, res, next) => {
         {
           model: Model.schedulerecord,
           as: "schedulerecord",
-          attributes: ["id", "isComplete"],
+          attributes: ["id", "isComplete", "createdAt"],
         },
       ],
     })
