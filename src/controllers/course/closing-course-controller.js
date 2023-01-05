@@ -36,11 +36,11 @@ export const PostClosingCourse = (req, res, next) => {
             });
           })
           .catch((err) => {
-            res.status(500).json({ status: 500, message: err });
+            res.status(500).json({ status: 500, message: err.toString()|| "" });
           });
       }
     })
     .catch((err) => {
-      res.status(500).json({ status: 500, message: err });
+      res.status(500).json({ status: 500, message: err.toString()|| "" });
     });
 };

@@ -42,7 +42,7 @@ export const sendMail = (req, res, next) => {
           `,
         },
         (err, info) => {
-          if (err) res.status(500).json({ status: 500, message: err });
+          if (err) res.status(500).json({ status: 500, message: err.toString() || "" });
           res.status(200).json({ status: 200, message: `email sent!` });
         }
       );

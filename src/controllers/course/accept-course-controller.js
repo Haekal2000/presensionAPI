@@ -79,7 +79,7 @@ export const AcceptCourse = (req, res, next) => {
                     .json({ status: 200, message: "Course Accepted Success!" });
                 })
                 .catch((err) => {
-                  res.status(500).json({ status: 500, message: err });
+                  res.status(500).json({ status: 500, message: err.toString() || "" });
                 });
             } else {
               res
@@ -88,11 +88,11 @@ export const AcceptCourse = (req, res, next) => {
             }
           })
           .catch((err) => {
-            res.status(500).json({ status: 500, message: err });
+            res.status(500).json({ status: 500, message: err.toString() || "" });
           });
       }
     })
     .catch((err) => {
-      res.status(500).json({ status: 500, message: err });
+      res.status(500).json({ status: 500, message: err.toString() || "" });
     });
 };

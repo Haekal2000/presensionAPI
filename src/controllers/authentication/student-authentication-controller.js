@@ -39,7 +39,7 @@ export const postLoginStudent = (req, res, next) => {
     }).catch((err) => {
       res.status(500).json({
         status: 500,
-        message: err,
+        message: err.toString() || "",
         token: "",
       });
     });
