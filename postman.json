@@ -131,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nik\": \"710001\",\n    \"password\": \"admin12345\"\n}",
+					"raw": "{\n    \"nik\": \"710001\",\n    \"password\": \"admin12345\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -325,6 +325,34 @@
 						{
 							"key": "department_id",
 							"value": "46c0d3ec-0063-4f26-8f14-6be3bbe99f07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/student-course-history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/student-course-history?department_id=46c0d3ec-0063-4f26-8f14-6be3bbe99f07&student_id=1973013",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student-course-history"
+					],
+					"query": [
+						{
+							"key": "department_id",
+							"value": "46c0d3ec-0063-4f26-8f14-6be3bbe99f07"
+						},
+						{
+							"key": "student_id",
+							"value": "1973013"
 						}
 					]
 				}

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      const { lecturer, course, schedule, studentrecord } = models;
+      const { lecturer, course, schedule } = models;
       schedulerecord.belongsTo(lecturer, {
         foreignKey: "lecturer_nik",
         as: "lecturer",

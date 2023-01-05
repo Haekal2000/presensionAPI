@@ -21,6 +21,14 @@ export const GetStudentHistory = (req, res, next) => {
           as: "course",
           attributes: ["name", "department_id"],
           where: { department_id: department_id },
+          include: [
+            {
+              model: Model.schedulerecord,
+              as: "schedulerecord",
+              attributes: ["isComplete"],
+              where: { isComplete: true },
+            },
+          ],
         },
       ],
     })
@@ -32,7 +40,6 @@ export const GetStudentHistory = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log("err: ", err);
       res.status(500).json({
         status: 500,
         message: err,
