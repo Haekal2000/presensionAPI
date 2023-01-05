@@ -47,10 +47,10 @@ export const sendMail = (req, res, next) => {
         }
       );
     })
-    .catch(() => {
+    .catch((err) => {
       res.status(400).json({
         status: 400,
-        message: "student data not found",
+        message: err.toString() || "",
         token: "",
       });
     });

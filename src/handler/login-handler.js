@@ -62,7 +62,10 @@ export const tokenization = async (param, isStudent) => {
 
     const tokenResult = jwt.sign(
       { decryptUsername },
-      "this is test string for jwt"
+      "this is test string for jwt", 
+      {
+        expiresIn: 60
+      }
     );
 
     return Promise.resolve(tokenResult);
