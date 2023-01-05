@@ -11,6 +11,7 @@ import { GetLecturerSession } from "../controllers/lecturer/lecturer-session-con
 import { GetStudentSchedules } from "../controllers/student/student-schedules-controller";
 import { sendMail } from "../controllers/sendMail/send-mail-controller";
 import { GetStudentHistory } from "../controllers/course/student-course-history";
+import {PostClosingCourse} from "../controllers/course/closing-course-controller";
 
 const router = Router();
 
