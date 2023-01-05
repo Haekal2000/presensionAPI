@@ -10,6 +10,7 @@ import { GetLecturerSchedules } from "../controllers/lecturer/lecturer-schedules
 import { GetLecturerSession } from "../controllers/lecturer/lecturer-session-controller";
 import { GetStudentSchedules } from "../controllers/student/student-schedules-controller";
 import { sendMail } from "../controllers/sendMail/send-mail-controller";
+import { GetStudentHistory } from "../controllers/course/student-course-history";
 
 const router = Router();
 
@@ -44,5 +45,8 @@ router.get("/lecturer-session", (req, res, next) => {
 router.get("/course-history", (req, res, next) => {
   GetCourseHistory(req, res, next);
 });
+router.get("/student-course-history", (req, res, next) => {
+  GetStudentHistory(req, res, next);
+})
 
 export default router;
