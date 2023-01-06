@@ -19,8 +19,8 @@ const getScheduleData = (lecturer_nik) => {
     .then((param) => {
       return Promise.resolve(param);
     })
-    .catch(() => {
-      return Promise.reject([]);
+    .catch((err) => {
+      return Promise.reject(err);
     });
   return data;
 };
@@ -37,7 +37,7 @@ export const GetLecturerSchedules = (req, res, next) => {
     })
     .catch((err) => {
       res
-        .status(400)
-        .json({ status: 400, message: err.toString() || "", data: [] });
+        .status(500)
+        .json({ status: 500, message: err.toString() || "", data: [] });
     });
 };
