@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4e6504a1-376c-46ad-a127-425975400586",
+		"_postman_id": "0cc95c1d-a2de-48cf-b084-f329b301a160",
 		"name": "presensiapi",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2526289"
@@ -116,7 +116,7 @@
 					"query": [
 						{
 							"key": "schedule_id",
-							"value": null,
+							"value": "",
 							"disabled": true
 						}
 					]
@@ -353,6 +353,66 @@
 						{
 							"key": "student_id",
 							"value": "1973013"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/student-data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWNyeXB0VXNlcm5hbWUiOiJqbzg4ejNvOGtkdGpvODh6M284a2R0am84OHozbzhrZHRqbzg4ejNvOGtkdGpvODh6M284a2R0am84OHozbzhrZHRqbzg4ejNvOGtkdGpvODh6M284a2R0IiwiaWF0IjoxNjcyOTg4ODQzLCJleHAiOjE2NzI5ODg5MDN9.GGL7v8Gq_HG7Sfy0LQcDjFsEYg_8fiXaRwse63dztf0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/student-data?nrpId=1973013",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"student-data"
+					],
+					"query": [
+						{
+							"key": "nrpId",
+							"value": "1973013"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/lecture-data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authentication",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWNyeXB0VXNlcm5hbWUiOiJ0ZGo0YjkyNWRidGRqNGI5MjVkYnRkajRiOTI1ZGJ0ZGo0YjkyNWRidGRqNGI5MjVkYnRkajRiOTI1ZGJ0ZGo0YjkyNWRiIiwiaWF0IjoxNjcyOTg5NDQwLCJleHAiOjE2NzI5ODk1MDB9.tQD5aZIyYGSe36m3HjZ5GSc3i1wyMK2lE1abQvZqHnc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/lecture-data?nik=710001",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lecture-data"
+					],
+					"query": [
+						{
+							"key": "nik",
+							"value": "710001"
 						}
 					]
 				}
