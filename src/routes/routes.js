@@ -1,15 +1,15 @@
 import { Router } from "express";
 import { SecureRoutes } from "../middlewares/secure-routes";
-import { postLoginStudent } from "../controllers/authentication/student-authentication-controller";
-import { postLoginLecture } from "../controllers/authentication/lecture-authentication-controller";
+import { PostLoginStudent } from "../controllers/authentication/student-authentication-controller";
+import { PostLoginLecture } from "../controllers/authentication/lecture-authentication-controller";
 import { PostSchedule } from "../controllers/schedule/add-schedule-controller";
-import postCreateStudent from "../controllers/student/add-student-controller";
-import { AcceptCourse } from "../controllers/course/accept-course-controller";
+import PostCreateStudent from "../controllers/student/add-student-controller";
+import { PostAcceptCourse } from "../controllers/course/accept-course-controller";
 import { GetCourseHistory } from "../controllers/course/course-history-controller";
 import { GetLecturerSchedules } from "../controllers/lecturer/lecturer-schedules-controller";
 import { GetLecturerSession } from "../controllers/lecturer/lecturer-session-controller";
 import { GetStudentSchedules } from "../controllers/student/student-schedules-controller";
-import { sendMail } from "../controllers/sendMail/send-mail-controller";
+import { PostSendMail } from "../controllers/sendMail/send-mail-controller";
 import { GetStudentHistory } from "../controllers/course/student-course-history";
 import { PostClosingCourse } from "../controllers/course/closing-course-controller";
 import { GetStudentData } from "../controllers/student/student-data";
@@ -17,12 +17,12 @@ import { GetLectureData } from "../controllers/lecturer/lecturer-data";
 
 const router = Router();
 
-router.post("/create-student", postCreateStudent);
-router.post("/login-student", async (req, res, next) => {
-  await postLoginStudent(req, res, next);
+router.post("/create-student", PostCreateStudent);
+router.post("/login-student", (req, res, next) => {
+  PostLoginStudent(req, res, next);
 });
 router.post("/login-lecture", (req, res, next) => {
-  postLoginLecture(req, res, next);
+  PostLoginLecture(req, res, next);
 });
 router.get("/student-data", SecureRoutes, (req, res, next) => {
   GetStudentData(req, res, next)
@@ -37,10 +37,10 @@ router.get("/lecturer-schedule", SecureRoutes, async (req, res, next) => {
   await GetLecturerSchedules(req, res, next);
 });
 router.post("/send-email", SecureRoutes, (req, res, next) => {
-  sendMail(req, res, next);
+  PostSendMail(req, res, next);
 });
 router.post("/accept-course", SecureRoutes, (req, res, next) => {
-  AcceptCourse(req, res, next);
+  PostAcceptCourse(req, res, next);
 });
 router.post("/add-schedule", SecureRoutes, (req, res, next) => {
   PostSchedule(req, res, next);

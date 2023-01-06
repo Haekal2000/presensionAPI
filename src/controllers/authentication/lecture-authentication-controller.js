@@ -1,6 +1,6 @@
 import { tokenization } from "../../handler/login-handler";
 
-export const postLoginLecture = (req, res, next) => {
+export const PostLoginLecture = (req, res, next) => {
   let { body } = req;
 
   tokenization(body, false)

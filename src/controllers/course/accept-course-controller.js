@@ -4,7 +4,7 @@ import model from "../../db/models";
 import randomstring from "randomstring";
 import { Sequelize } from "sequelize";
 
-export const AcceptCourse = (req, res, next) => {
+export const PostAcceptCourse = (req, res, next) => {
   const {
     course_code,
     student_id,

@@ -57,7 +57,7 @@ const validation = async (requestData) => {
   }
 };
 
-const postCreateStudent = async (req, res, next) => {
+const PostCreateStudent = async (req, res, next) => {
   let validated;
   try {
     const { body } = req;
@@ -84,4 +84,4 @@ const postCreateStudent = async (req, res, next) => {
   }
 };
 
-export default postCreateStudent;
+export default PostCreateStudent;

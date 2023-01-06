@@ -6,7 +6,7 @@ import { studentAttributes } from "../../utils/studentAttributes";
 
 dotenv.config();
 
-export const sendMail = (req, res, next) => {
+export const PostSendMail = (req, res, next) => {
   const { courseName, course_id, department_id, academic_period_id } = req.body;
 
   model.student
