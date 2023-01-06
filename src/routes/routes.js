@@ -25,16 +25,16 @@ router.post("/login-lecture", (req, res, next) => {
   PostLoginLecture(req, res, next);
 });
 router.get("/student-data", SecureRoutes, (req, res, next) => {
-  GetStudentData(req, res, next)
-})
+  GetStudentData(req, res, next);
+});
 router.get("/lecture-data", SecureRoutes, (req, res, next) => {
-  GetLectureData(req, res, next)
-})
+  GetLectureData(req, res, next);
+});
 router.get("/student-schedule", SecureRoutes, (req, res, next) => {
   GetStudentSchedules(req, res, next);
 });
-router.get("/lecturer-schedule", SecureRoutes, async (req, res, next) => {
-  await GetLecturerSchedules(req, res, next);
+router.get("/lecturer-schedule", SecureRoutes, (req, res, next) => {
+  GetLecturerSchedules(req, res, next);
 });
 router.post("/send-email", SecureRoutes, (req, res, next) => {
   PostSendMail(req, res, next);
