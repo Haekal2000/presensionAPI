@@ -6,6 +6,7 @@ import sequelizeConnection from "./src/utils/DBconnection";
 import router from "./src/routes/routes";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
+import helmet from "helmet";
 
 const app = express();
 const port = 3000;
@@ -14,7 +15,14 @@ dotenv.config();
 
 app.use(cors());
 app.use(cookieParser());
-app.use(morgan(":method :url :status :res[content-length] - :response-time ms"))
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms")
+);
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 app.use(bodyParser.json());
 app.use(router);
 
