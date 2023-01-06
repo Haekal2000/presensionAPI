@@ -11,7 +11,9 @@ import { GetLecturerSession } from "../controllers/lecturer/lecturer-session-con
 import { GetStudentSchedules } from "../controllers/student/student-schedules-controller";
 import { sendMail } from "../controllers/sendMail/send-mail-controller";
 import { GetStudentHistory } from "../controllers/course/student-course-history";
-import {PostClosingCourse} from "../controllers/course/closing-course-controller";
+import { PostClosingCourse } from "../controllers/course/closing-course-controller";
+import { GetStudentData } from "../controllers/student/student-data";
+import { GetLectureData } from "../controllers/lecturer/lecturer-data";
 
 const router = Router();
 
@@ -19,9 +21,15 @@ router.post("/create-student", postCreateStudent);
 router.post("/login-student", async (req, res, next) => {
   await postLoginStudent(req, res, next);
 });
-router.post("/login-lecture", async (req, res, next) => {
-  await postLoginLecture(req, res, next);
+router.post("/login-lecture", (req, res, next) => {
+  postLoginLecture(req, res, next);
 });
+router.get("/student-data", SecureRoutes, (req, res, next) => {
+  GetStudentData(req, res, next)
+})
+router.get("/lecture-data", SecureRoutes, (req, res, next) => {
+  GetLectureData(req, res, next)
+})
 router.get("/student-schedule", SecureRoutes, (req, res, next) => {
   GetStudentSchedules(req, res, next);
 });
