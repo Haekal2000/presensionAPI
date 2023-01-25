@@ -1,15 +1,22 @@
 import { Sequelize } from "sequelize";
+import * as dotenv from 'dotenv';
 
-const sequelize = new Sequelize("sql6523868", "sql6523868", "sTW9wPmrbE", {
-  host: "sql6.freesqldatabase.com",
-  dialect: "mysql",
-  pool: {
-    connectionLimit: 5,
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-});
+dotenv.config();
 
-export default sequelize;
+const sequelizeConnection = new Sequelize(
+  "presensidb",
+  "root",
+  process.env.DATABASE_PASSWORD,
+  {
+    host: "127.0.0.1",
+    port: 3306,
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000,
+    },
+  }
+);
+
+export default sequelizeConnection;

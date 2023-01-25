@@ -1,23 +1,27 @@
 {
   "development": {
-    "username": "sql6523868",
-    "password": "sTW9wPmrbE",
-    "database": "sql6523868",
-    "host": "sql6.freesqldatabase.com",
-    "dialect": "mysql"
+    "username": "root",
+    "password": "kal1243576",
+    "database": "presensidb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "logging": true,
+    "omitNull": true
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": true
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": true
   }
 }
